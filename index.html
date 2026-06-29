@@ -9,114 +9,133 @@
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
+/* ===== LIGHT THEME (default) ===== */
 :root{
   --pr:#1a5276;--pr2:#2980b9;--pr3:#0e2f44;
   --ok:#1e8449;--ok2:#d5f5e3;--no:#c0392b;--no2:#fce4e4;
-  --acc:#e67e22;--acc2:#fef9e7;
-  --neu:#566573;--neu2:#f2f3f4;
+  --acc:#e67e22;--neu:#566573;--neu2:#f2f3f4;
   --bg:#ffffff;--bg2:#f8f9fa;--bg3:#eaecee;
   --tx:#1c2833;--tx2:#5d6d7e;--tx3:#aab7b8;
   --bd:#d5d8dc;--bd2:#85929e;
+  --hdr-grad:linear-gradient(135deg,#0e2f44,#1a5276 60%,#2980b9);
   --r:10px;--r2:16px;--r3:24px;
   --sh:0 2px 12px rgba(0,0,0,.08);
   --f:'Hind Siliguri',sans-serif;
 }
-body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh;line-height:1.6;font-size:15px}
+/* ===== DARK THEME ===== */
+body.dark{
+  --pr:#4db8ff;--pr2:#66c5ff;--pr3:#1a8ccc;
+  --ok:#2ecc71;--ok2:rgba(46,204,113,.15);
+  --no:#ff6b6b;--no2:rgba(255,107,107,.15);
+  --acc:#f39c12;--neu:#95a5a6;--neu2:#2c2c2c;
+  --bg:#1a1a2e;--bg2:#16213e;--bg3:#0f0f1a;
+  --tx:#e8e8f0;--tx2:#a0a0b8;--tx3:#555577;
+  --bd:#2a2a4a;--bd2:#3a3a5a;
+  --hdr-grad:linear-gradient(135deg,#0a0a1a,#1a1a2e 60%,#16213e);
+  --sh:0 2px 12px rgba(0,0,0,.4);
+}
+
+body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh;line-height:1.6;font-size:15px;transition:background .3s,color .3s}
 
 /* HEADER */
-.hdr{background:linear-gradient(135deg,var(--pr3),var(--pr) 60%,var(--pr2));color:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.2)}
-.hdr-in{max-width:960px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px}
-.hdr-title{font-size:18px;font-weight:700}
-.hdr-title span{font-size:11px;font-weight:400;opacity:.8;display:block;margin-top:-2px}
-.hdr-btns{display:flex;gap:7px}
-.hbtn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:6px 12px;border-radius:var(--r);font-family:var(--f);font-size:12px;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:5px}
+.hdr{background:var(--hdr-grad);color:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.3)}
+.hdr-in{max-width:960px;margin:0 auto;padding:8px 12px;display:flex;align-items:center;gap:8px}
+.hdr-left{flex:1;min-width:0;overflow:hidden}
+.hdr-name{font-size:17px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2}
+.hdr-sub{font-size:10px;font-weight:400;opacity:.75;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3;margin-top:1px}
+.hdr-sub2{font-size:10px;font-weight:400;opacity:.65;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
+.hdr-btns{display:flex;gap:5px;flex-shrink:0}
+.hbtn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;padding:5px 9px;border-radius:var(--r);font-family:var(--f);font-size:11px;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:4px;white-space:nowrap}
 .hbtn:hover{background:rgba(255,255,255,.28)}
-.hbtn svg{width:14px;height:14px;flex-shrink:0}
+.hbtn svg{width:13px;height:13px;flex-shrink:0}
+/* Theme toggle */
+.theme-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;transition:.2s}
+.theme-btn:hover{background:rgba(255,255,255,.25)}
 
 /* TABS */
-.tabs-wrap{background:var(--bg);position:sticky;top:51px;z-index:90;border-bottom:2px solid var(--bd)}
+.tabs-wrap{background:var(--bg);position:sticky;top:56px;z-index:90;border-bottom:2px solid var(--bd)}
 .tabs{max-width:960px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
-.tab{padding:10px 14px;font-family:var(--f);font-size:13px;font-weight:500;border:none;background:none;cursor:pointer;color:var(--tx2);border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:.2s}
+.tab{padding:9px 13px;font-family:var(--f);font-size:12px;font-weight:500;border:none;background:none;cursor:pointer;color:var(--tx2);border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:.2s}
 .tab.on{color:var(--pr);border-bottom-color:var(--pr);font-weight:700}
 .tab:hover:not(.on){background:var(--bg2)}
 
 /* MAIN */
-.main{max-width:960px;margin:0 auto;padding:18px 14px}
+.main{max-width:960px;margin:0 auto;padding:16px 12px}
 .sec{display:none}
 .sec.on{display:block}
 
 /* CARD */
-.card{background:var(--bg);border-radius:var(--r2);border:1px solid var(--bd);padding:18px;margin-bottom:14px;box-shadow:var(--sh)}
-.ctitle{font-size:15px;font-weight:600;color:var(--pr);margin-bottom:14px;display:flex;align-items:center;gap:7px}
-.ctitle svg{width:18px;height:18px;opacity:.85}
+.card{background:var(--bg);border-radius:var(--r2);border:1px solid var(--bd);padding:16px;margin-bottom:12px;box-shadow:var(--sh);transition:background .3s,border-color .3s}
+.ctitle{font-size:14px;font-weight:600;color:var(--pr);margin-bottom:13px;display:flex;align-items:center;gap:6px}
+.ctitle svg{width:17px;height:17px;opacity:.85}
 
 /* FORM */
-.fg2{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-.fg3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fg3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 @media(max-width:520px){.fg2,.fg3{grid-template-columns:1fr}}
-.fld{display:flex;flex-direction:column;gap:5px}
+.fld{display:flex;flex-direction:column;gap:4px}
 .fld label{font-size:12px;font-weight:600;color:var(--tx2)}
-.fld input,.fld select{font-family:var(--f);font-size:14px;padding:9px 11px;border:1.5px solid var(--bd);border-radius:var(--r);background:var(--bg);color:var(--tx);outline:none;transition:.2s}
-.fld input:focus,.fld select:focus{border-color:var(--pr);box-shadow:0 0 0 3px rgba(26,82,118,.1)}
+.fld input,.fld select{font-family:var(--f);font-size:14px;padding:8px 10px;border:1.5px solid var(--bd);border-radius:var(--r);background:var(--bg);color:var(--tx);outline:none;transition:.2s}
+.fld input:focus,.fld select:focus{border-color:var(--pr);box-shadow:0 0 0 3px rgba(77,184,255,.12)}
 .fld .hint{font-size:11px;color:var(--tx3)}
-.cval{background:var(--neu2);border:1.5px solid var(--bd);border-radius:var(--r);padding:9px 11px;font-size:16px;font-weight:700;color:var(--pr);text-align:center}
+.cval{background:var(--neu2);border:1.5px solid var(--bd);border-radius:var(--r);padding:8px 10px;font-size:15px;font-weight:700;color:var(--pr);text-align:center}
 
 /* BUTTONS */
-.btn{font-family:var(--f);padding:9px 18px;border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:6px;border:none}
+.btn{font-family:var(--f);padding:8px 16px;border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:5px;border:none}
 .btn-p{background:var(--pr);color:#fff}
-.btn-p:hover{background:var(--pr2)}
+.btn-p:hover{opacity:.88}
 .btn-s{background:var(--bg2);color:var(--tx);border:1.5px solid var(--bd)}
 .btn-s:hover{background:var(--bg3)}
 .btn-ok{background:var(--ok);color:#fff}
-.btn-ok:hover{background:#27ae60}
-.btn-acc{background:var(--acc);color:#fff}
-.btn-sm{padding:5px 11px;font-size:12px}
-.btn-danger{background:var(--no2);color:var(--no);border:1px solid #f5b7b1}
-.bgrp{display:flex;gap:9px;flex-wrap:wrap}
+.btn-ok:hover{opacity:.88}
+.btn-warn{background:var(--acc);color:#fff}
+.btn-sm{padding:4px 10px;font-size:11px}
+.btn-danger{background:var(--no2);color:var(--no);border:1px solid var(--no)}
+.bgrp{display:flex;gap:8px;flex-wrap:wrap}
 
 /* SUMMARY CARDS */
-.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
-@media(max-width:500px){.sgrid{grid-template-columns:1fr 1fr}}
-.scard{background:var(--bg);border-radius:var(--r2);padding:12px;text-align:center;border:1px solid var(--bd)}
-.scard .slbl{font-size:11px;color:var(--tx2);margin-bottom:3px;font-weight:500}
-.scard .sval{font-size:18px;font-weight:700;color:var(--pr)}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:14px}
+@media(max-width:480px){.sgrid{grid-template-columns:1fr 1fr}}
+.scard{background:var(--bg);border-radius:var(--r2);padding:11px;text-align:center;border:1px solid var(--bd)}
+.scard .slbl{font-size:10px;color:var(--tx2);margin-bottom:2px;font-weight:500}
+.scard .sval{font-size:17px;font-weight:700;color:var(--pr)}
 .scard.ok .sval{color:var(--ok)}
 .scard.no .sval{color:var(--no)}
 .scard.or .sval{color:var(--acc)}
 
 /* TABLE */
 .twrap{overflow-x:auto}
-.mtbl{width:100%;border-collapse:separate;border-spacing:0;font-size:13px}
-.mtbl th{background:var(--pr);color:#fff;padding:9px 10px;font-weight:600;text-align:center}
+.mtbl{width:100%;border-collapse:separate;border-spacing:0;font-size:12px}
+.mtbl th{background:var(--pr);color:#fff;padding:8px 9px;font-weight:600;text-align:center}
 .mtbl th:first-child{text-align:left;border-radius:var(--r) 0 0 0}
 .mtbl th:last-child{border-radius:0 var(--r) 0 0}
-.mtbl td{padding:8px 10px;border-bottom:1px solid var(--bd);text-align:center;vertical-align:middle;color:var(--tx);font-size:13px}
+.mtbl td{padding:7px 9px;border-bottom:1px solid var(--bd);text-align:center;vertical-align:middle;color:var(--tx)}
 .mtbl td:first-child{text-align:left;font-weight:500}
 .mtbl tr:hover td{background:var(--bg2)}
-.mtbl tr.tot td{font-weight:700;background:var(--bg3)!important}
-.bdg{display:inline-flex;align-items:center;padding:2px 8px;border-radius:50px;font-size:11px;font-weight:600}
+.mtbl tr.tot td{font-weight:700;background:var(--bg2)!important}
+.bdg{display:inline-flex;align-items:center;padding:2px 7px;border-radius:50px;font-size:11px;font-weight:600}
 .bdg-ok{background:var(--ok2);color:var(--ok)}
 .bdg-no{background:var(--no2);color:var(--no)}
 .bdg-gr{background:var(--neu2);color:var(--neu)}
 
 /* INDIVIDUAL CARDS */
-.igrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:560px){.igrid{grid-template-columns:1fr}}
+.igrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+@media(max-width:540px){.igrid{grid-template-columns:1fr}}
 .icard{background:var(--bg);border-radius:var(--r2);border:1px solid var(--bd);overflow:hidden;box-shadow:var(--sh)}
-.icard-h{padding:11px 14px;font-weight:600;font-size:13px;background:var(--pr);color:#fff;display:flex;align-items:center;gap:9px}
-.iavtr{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0}
-.icard-b{padding:12px 14px}
-.irow{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px dashed var(--bd);font-size:13px}
-.irow:last-child{border-bottom:none;padding-top:8px;margin-top:3px}
+.icard-h{padding:10px 13px;font-weight:600;font-size:13px;background:var(--pr);color:#fff;display:flex;align-items:center;gap:8px}
+.iavtr{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;flex-shrink:0}
+.icard-b{padding:11px 13px}
+.irow{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px dashed var(--bd);font-size:12px}
+.irow:last-child{border-bottom:none;padding-top:7px}
 .irow .il{color:var(--tx2)}
 .irow .iv{font-weight:600}
-.irow.give .iv{color:var(--no);font-size:15px;font-weight:700}
-.irow.get .iv{color:var(--ok);font-size:15px;font-weight:700}
-.irow.even .iv{color:var(--neu);font-size:14px}
+.irow.give .iv{color:var(--no);font-size:14px;font-weight:700}
+.irow.get .iv{color:var(--ok);font-size:14px;font-weight:700}
+.irow.even .iv{color:var(--neu)}
 
 /* MEMBER LIST */
-.mitem{display:flex;align-items:center;gap:9px;padding:9px 12px;background:var(--bg);border-radius:var(--r);border:1px solid var(--bd);margin-bottom:7px;transition:.2s}
+.mitem{display:flex;align-items:center;gap:8px;padding:8px 11px;background:var(--bg);border-radius:var(--r);border:1px solid var(--bd);margin-bottom:6px;transition:.2s}
 .mitem:hover{border-color:var(--pr)}
 .minfo{flex:1;min-width:0}
 .mname{font-weight:500;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -124,70 +143,75 @@ body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh
 .ibtn{background:none;border:1px solid var(--bd);border-radius:6px;padding:4px;cursor:pointer;transition:.2s;display:flex;align-items:center;color:var(--tx2)}
 .ibtn:hover{border-color:var(--no);color:var(--no)}
 .ibtn.ed:hover{border-color:var(--pr);color:var(--pr)}
-.mavtr{width:32px;height:32px;border-radius:50%;background:var(--pr);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:11px;flex-shrink:0}
+.mavtr{width:30px;height:30px;border-radius:50%;background:var(--pr);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:10px;flex-shrink:0}
 
 /* ORG BANNER */
-.banner{background:linear-gradient(135deg,var(--pr3),var(--pr));color:#fff;border-radius:var(--r2);padding:16px 18px;text-align:center;margin-bottom:16px}
-.banner h1{font-size:20px;font-weight:700;margin-bottom:3px}
-.banner h2{font-size:14px;font-weight:400;opacity:.85;margin-bottom:2px}
+.banner{background:var(--pr);color:#fff;border-radius:var(--r2);padding:14px 16px;text-align:center;margin-bottom:14px}
+.banner h1{font-size:18px;font-weight:700;margin-bottom:2px}
+.banner h2{font-size:13px;font-weight:400;opacity:.85;margin-bottom:2px}
 .banner p{font-size:11px;opacity:.7}
 
 /* EMPTY */
-.empty{text-align:center;padding:40px 20px;color:var(--tx2)}
-.empty svg{width:56px;height:56px;opacity:.22;margin-bottom:12px}
-.empty h3{font-size:16px;margin-bottom:5px;color:var(--tx)}
+.empty{text-align:center;padding:36px 16px;color:var(--tx2)}
+.empty svg{width:52px;height:52px;opacity:.2;margin-bottom:10px}
+.empty h3{font-size:15px;margin-bottom:4px;color:var(--tx)}
+.empty p{font-size:12px}
 
 /* MODAL */
-.moverlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:.25s}
+.moverlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:.25s}
 .moverlay.on{opacity:1;pointer-events:all}
-.modal{background:var(--bg);border-radius:var(--r3) var(--r3) 0 0;padding:20px 17px;width:100%;max-width:480px;max-height:92vh;overflow-y:auto;transform:translateY(20px);transition:.25s}
+.modal{background:var(--bg);border-radius:var(--r3) var(--r3) 0 0;padding:18px 15px;width:100%;max-width:480px;max-height:92vh;overflow-y:auto;transform:translateY(20px);transition:.25s}
 .moverlay.on .modal{transform:translateY(0)}
-.mtit{font-size:15px;font-weight:700;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
-.mclose{background:var(--bg3);border:none;border-radius:50%;width:27px;height:27px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;color:var(--tx2)}
+.mtit{font-size:14px;font-weight:700;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;color:var(--tx)}
+.mclose{background:var(--bg3);border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;color:var(--tx2)}
 @media(min-width:520px){.modal{border-radius:var(--r3)}}
 
 /* TOAST */
-.toast{position:fixed;bottom:68px;left:50%;transform:translateX(-50%) translateY(14px);background:var(--tx);color:#fff;padding:8px 16px;border-radius:50px;font-size:13px;z-index:300;opacity:0;pointer-events:none;transition:.25s;white-space:nowrap}
+.toast{position:fixed;bottom:64px;left:50%;transform:translateX(-50%) translateY(12px);background:var(--tx);color:var(--bg);padding:7px 15px;border-radius:50px;font-size:12px;z-index:300;opacity:0;pointer-events:none;transition:.25s;white-space:nowrap}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* ARCHIVE */
-.ait{display:flex;align-items:center;justify-content:space-between;gap:9px;padding:10px 12px;background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);margin-bottom:6px;flex-wrap:wrap}
-.aname{font-weight:600;font-size:13px;color:var(--pr)}
-.ameta{font-size:11px;color:var(--tx2);margin-top:1px}
-.arc-title{font-size:13px;font-weight:600;color:var(--tx2);margin-bottom:8px}
+.ait{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;padding:9px 11px;background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);margin-bottom:5px;flex-wrap:wrap}
+.aname{font-weight:600;font-size:12px;color:var(--pr)}
+.ameta{font-size:10px;color:var(--tx2);margin-top:1px}
+.arc-title{font-size:12px;font-weight:600;color:var(--tx2);margin-bottom:7px}
 
-/* MEAL ENTRY — দৈনিক মিল */
-.meal-date-bar{background:var(--pr);color:#fff;border-radius:var(--r);padding:10px 14px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
-.meal-date-bar .dlbl{font-size:13px;font-weight:600}
-.member-meal-row{display:flex;align-items:center;gap:10px;padding:10px 13px;background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);margin-bottom:7px;flex-wrap:wrap}
-.member-meal-row .mmr-name{font-weight:600;font-size:13px;min-width:140px;flex:1}
-.meal-checks{display:flex;gap:8px;flex-wrap:wrap}
-.meal-chk{display:flex;align-items:center;gap:5px;cursor:pointer;padding:5px 10px;border-radius:var(--r);border:1.5px solid var(--bd);transition:.2s;font-size:12px;font-weight:600;user-select:none}
-.meal-chk.morning{border-color:#f39c12}
-.meal-chk.morning.checked{background:#fef9e7;border-color:#e67e22;color:#784212}
-.meal-chk.noon{border-color:#27ae60}
-.meal-chk.noon.checked{background:#d5f5e3;border-color:#1e8449;color:#0b5345}
-.meal-chk.night{border-color:#2980b9}
-.meal-chk.night.checked{background:#d6eaf8;border-color:#1a5276;color:#0e2f44}
+/* MEAL ENTRY */
+.meal-date-bar{background:var(--pr);color:#fff;border-radius:var(--r);padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.meal-date-bar .dlbl{font-size:12px;font-weight:600}
+.member-meal-row{display:flex;align-items:center;gap:8px;padding:8px 11px;background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);margin-bottom:6px;flex-wrap:wrap}
+.member-meal-row .mmr-name{font-weight:600;font-size:12px;min-width:120px;flex:1}
+.meal-checks{display:flex;gap:6px;flex-wrap:wrap}
+.meal-chk{display:flex;align-items:center;gap:4px;cursor:pointer;padding:4px 8px;border-radius:var(--r);border:1.5px solid var(--bd);transition:.2s;font-size:11px;font-weight:600;user-select:none;color:var(--tx2)}
+.meal-chk.morning{border-color:#f39c12;color:#784212}
+.meal-chk.morning.checked{background:#fef9e7;border-color:#e67e22}
+.meal-chk.noon{border-color:#27ae60;color:#0b5345}
+.meal-chk.noon.checked{background:var(--ok2);border-color:var(--ok)}
+.meal-chk.night{border-color:#2980b9;color:#154360}
+.meal-chk.night.checked{background:#d6eaf8;border-color:var(--pr)}
 .meal-chk input{display:none}
-.mmr-total{font-size:13px;font-weight:700;color:var(--pr);min-width:60px;text-align:right}
+body.dark .meal-chk.morning{color:#f39c12}
+body.dark .meal-chk.noon{color:#2ecc71}
+body.dark .meal-chk.night{color:#4db8ff}
+.mmr-total{font-size:12px;font-weight:700;color:var(--pr);min-width:55px;text-align:right}
 
-/* BAZAR ENTRY */
-.bazar-row{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);margin-bottom:6px}
-.bazar-row .bdate{font-weight:600;font-size:13px;flex:1;color:var(--pr)}
-.bazar-row .bamt{font-weight:700;font-size:14px;color:var(--ok)}
-.bazar-row .bdesc{font-size:11px;color:var(--tx2)}
-
-/* DEPOSIT ENTRY */
-.dep-row{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);margin-bottom:6px}
-.dep-row .dname{font-weight:600;font-size:13px;flex:1}
-.dep-row .damt{font-weight:700;font-size:14px;color:var(--ok)}
-.dep-row .ddate{font-size:11px;color:var(--tx2)}
-
-/* MONTH FILTER BAR */
-.filter-bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
-.filter-bar select{font-family:var(--f);font-size:13px;padding:7px 10px;border:1.5px solid var(--bd);border-radius:var(--r);background:var(--bg);color:var(--tx);outline:none}
+/* FILTER BAR */
+.filter-bar{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.filter-bar select{font-family:var(--f);font-size:12px;padding:6px 9px;border:1.5px solid var(--bd);border-radius:var(--r);background:var(--bg);color:var(--tx);outline:none}
 .filter-bar select:focus{border-color:var(--pr)}
+
+/* CSV SECTION */
+.csv-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:10px;background:var(--bg2);border-radius:var(--r);border:1px solid var(--bd);margin-bottom:8px}
+.csv-label{font-size:12px;font-weight:600;color:var(--tx2);flex:1}
+.file-input-wrap{position:relative;overflow:hidden;display:inline-flex}
+.file-input-wrap input[type=file]{position:absolute;opacity:0;width:100%;height:100%;cursor:pointer}
+
+/* DARK THEME overrides for specific elements */
+body.dark .meal-chk.morning.checked{background:rgba(243,156,18,.15)}
+body.dark .meal-chk.noon.checked{background:rgba(46,204,113,.15)}
+body.dark .meal-chk.night.checked{background:rgba(77,184,255,.15)}
+body.dark .mtbl tr.tot td{background:var(--bg3)!important}
+body.dark .banner{background:linear-gradient(135deg,#0a0a20,#1a1a3e)}
 
 /* MISC */
 .mt12{margin-top:12px}
@@ -197,45 +221,45 @@ body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh
 .c-ok{color:var(--ok)}
 .c-no{color:var(--no)}
 .fw7{font-weight:700}
-.divider{height:1px;background:var(--bd);margin:12px 0}
+.divider{height:1px;background:var(--bd);margin:10px 0}
 
 /* ===================== PRINT ===================== */
 @media print{
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
-  .hdr,.tabs-wrap,.moverlay,.toast,.noprint,.bgrp,.filter-bar{display:none!important}
-  body{background:#fff!important;font-family:'Hind Siliguri',sans-serif!important;font-size:12px!important}
+  .hdr,.tabs-wrap,.moverlay,.toast,.noprint,.bgrp,.filter-bar,.csv-row{display:none!important}
+  body{background:#fff!important;font-family:'Hind Siliguri',sans-serif!important;font-size:11px!important}
   .main{padding:4px!important;max-width:100%!important}
   .sec{display:block!important}
   #sec-setup,#sec-members,#sec-daily,#sec-bazar,#sec-deposit{display:none!important}
   body.po-overview #sec-individual{display:none!important}
   body.po-individual #sec-overview{display:none!important}
-  .card{box-shadow:none!important;border:1.5px solid #555!important;margin-bottom:7px!important;break-inside:avoid;padding:9px!important}
-  .banner{background:#1a5276!important;-webkit-print-color-adjust:exact!important;color:#fff!important;border-radius:5px!important;padding:10px 14px!important;margin-bottom:8px!important}
-  .banner h1{color:#fff!important;font-size:16px!important;font-weight:800!important}
-  .banner h2{color:#fff!important;font-size:12px!important}
+  .card{box-shadow:none!important;border:1.5px solid #555!important;margin-bottom:6px!important;break-inside:avoid;padding:8px!important;background:#fff!important}
+  .banner{background:#1a5276!important;-webkit-print-color-adjust:exact!important;color:#fff!important;border-radius:5px!important;padding:9px 13px!important;margin-bottom:7px!important}
+  .banner h1{color:#fff!important;font-size:15px!important;font-weight:800!important}
+  .banner h2{color:#fff!important;font-size:11px!important}
   .banner p{color:#dde!important;font-size:10px!important}
-  .sgrid{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:5px!important;margin-bottom:7px!important}
-  .scard{border:1.5px solid #444!important;background:#e8e8e8!important;padding:7px!important}
-  .scard .slbl{color:#111!important;font-size:10px!important;font-weight:700!important}
-  .scard .sval{color:#000!important;font-weight:800!important;font-size:14px!important}
+  .sgrid{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:4px!important;margin-bottom:6px!important}
+  .scard{border:1.5px solid #444!important;background:#e8e8e8!important;padding:6px!important}
+  .scard .slbl{color:#111!important;font-size:9px!important;font-weight:700!important}
+  .scard .sval{color:#000!important;font-weight:800!important;font-size:13px!important}
   .scard.ok .sval{color:#0b5345!important}
   .scard.no .sval{color:#641e16!important}
-  .mtbl th{background:#1a5276!important;-webkit-print-color-adjust:exact!important;color:#fff!important;font-size:10px!important;padding:6px 7px!important;font-weight:800!important}
-  .mtbl td{border-bottom:1px solid #888!important;font-size:10px!important;padding:5px 7px!important;color:#000!important;font-weight:600!important}
+  .mtbl th{background:#1a5276!important;-webkit-print-color-adjust:exact!important;color:#fff!important;font-size:9px!important;padding:5px 6px!important;font-weight:800!important}
+  .mtbl td{border-bottom:1px solid #888!important;font-size:9px!important;padding:4px 6px!important;color:#000!important;font-weight:600!important}
   .mtbl tr.tot td{background:#c5d5e0!important;-webkit-print-color-adjust:exact!important;font-weight:800!important}
-  .bdg{display:inline-block!important;padding:2px 6px!important;font-size:9px!important;font-weight:800!important;border-radius:50px!important}
-  .bdg-ok{background:#a9dfbf!important;color:#0b5345!important;border:1.5px solid #0b5345!important;-webkit-print-color-adjust:exact!important}
-  .bdg-no{background:#f5b7b1!important;color:#641e16!important;border:1.5px solid #641e16!important;-webkit-print-color-adjust:exact!important}
-  .igrid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:7px!important}
-  .icard{break-inside:avoid!important;border:1.5px solid #555!important;border-radius:7px!important;overflow:hidden!important}
-  .icard-h{background:#1a5276!important;-webkit-print-color-adjust:exact!important;color:#fff!important;padding:8px 11px!important}
-  .icard-b{padding:7px 11px!important}
-  .irow{border-bottom:1px solid #bbb!important;padding:3px 0!important}
-  .irow .il{color:#333!important;font-size:10px!important;font-weight:600!important}
-  .irow .iv{color:#000!important;font-size:10px!important;font-weight:700!important}
-  .irow.give .iv{color:#641e16!important;font-weight:800!important;font-size:12px!important}
-  .irow.get .iv{color:#0b5345!important;font-weight:800!important;font-size:12px!important}
-  @page{margin:9mm 8mm;size:A4 portrait}
+  .bdg{display:inline-block!important;padding:1px 5px!important;font-size:8px!important;font-weight:800!important;border-radius:50px!important}
+  .bdg-ok{background:#a9dfbf!important;color:#0b5345!important;border:1px solid #0b5345!important;-webkit-print-color-adjust:exact!important}
+  .bdg-no{background:#f5b7b1!important;color:#641e16!important;border:1px solid #641e16!important;-webkit-print-color-adjust:exact!important}
+  .igrid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:6px!important}
+  .icard{break-inside:avoid!important;border:1.5px solid #555!important;border-radius:6px!important;overflow:hidden!important}
+  .icard-h{background:#1a5276!important;-webkit-print-color-adjust:exact!important;color:#fff!important;padding:7px 10px!important}
+  .icard-b{padding:6px 10px!important;background:#fff!important}
+  .irow{border-bottom:1px solid #bbb!important;padding:2px 0!important}
+  .irow .il{color:#333!important;font-size:9px!important;font-weight:600!important}
+  .irow .iv{color:#000!important;font-size:9px!important;font-weight:700!important}
+  .irow.give .iv{color:#641e16!important;font-weight:800!important;font-size:11px!important}
+  .irow.get .iv{color:#0b5345!important;font-weight:800!important;font-size:11px!important}
+  @page{margin:8mm 7mm;size:A4 portrait}
 }
 </style>
 </head>
@@ -244,16 +268,17 @@ body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh
 <!-- HEADER -->
 <header class="hdr noprint">
   <div class="hdr-in">
-    <div class="hdr-title">
-      🍽️ মিলের হিসাব
-      <span id="tagline">দল ভিত্তিক খাবার খরচ ব্যবস্থাপনা</span>
+    <div class="hdr-left">
+      <div class="hdr-name">🍽️ মিলের হিসাব</div>
+      <div class="hdr-sub" id="hdrOrg"></div>
+      <div class="hdr-sub2" id="hdrAddr"></div>
     </div>
     <div class="hdr-btns">
+      <button class="theme-btn" onclick="toggleTheme()" id="themeBtn" title="থিম পরিবর্তন">☀️</button>
       <button class="hbtn" onclick="doPrint('all')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 10v6m0 0l-3-3m3 3l3-3M3 15v4a2 2 0 002 2h14a2 2 0 002-2v-4M7 10l5-5 5 5"/></svg>
-        PDF
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 10v6m0 0l-3-3m3 3l3-3M3 15v4a2 2 0 002 2h14a2 2 0 002-2v-4M7 10l5-5 5 5"/></svg>PDF
       </button>
-      <button class="hbtn" onclick="resetAll()" title="নতুন মাস শুরু করুন">
+      <button class="hbtn" onclick="resetAll()" title="নতুন মাস">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
       </button>
     </div>
@@ -263,12 +288,12 @@ body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh
 <!-- TABS -->
 <div class="tabs-wrap noprint">
   <nav class="tabs">
-    <button class="tab on"  onclick="goTab('setup')"     id="tab-setup">⚙️ সেটআপ</button>
-    <button class="tab"     onclick="goTab('members')"   id="tab-members">👥 সদস্য</button>
-    <button class="tab"     onclick="goTab('daily')"     id="tab-daily">🍽️ দৈনিক মিল</button>
-    <button class="tab"     onclick="goTab('bazar')"     id="tab-bazar">🛒 বাজার খরচ</button>
-    <button class="tab"     onclick="goTab('deposit')"   id="tab-deposit">💰 জমার হিসাব</button>
-    <button class="tab"     onclick="goTab('overview')"  id="tab-overview">📊 সার সংক্ষেপ</button>
+    <button class="tab on"  onclick="goTab('setup')"      id="tab-setup">⚙️ সেটআপ</button>
+    <button class="tab"     onclick="goTab('members')"    id="tab-members">👥 সদস্য</button>
+    <button class="tab"     onclick="goTab('daily')"      id="tab-daily">🍽️ দৈনিক মিল</button>
+    <button class="tab"     onclick="goTab('bazar')"      id="tab-bazar">🛒 বাজার</button>
+    <button class="tab"     onclick="goTab('deposit')"    id="tab-deposit">💰 জমা</button>
+    <button class="tab"     onclick="goTab('overview')"   id="tab-overview">📊 সার সংক্ষেপ</button>
     <button class="tab"     onclick="goTab('individual')" id="tab-individual">🧾 ব্যক্তিগত</button>
   </nav>
 </div>
@@ -279,8 +304,7 @@ body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh
 <div class="sec on" id="sec-setup">
   <div class="card">
     <div class="ctitle">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-      প্রতিষ্ঠানের তথ্য
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>প্রতিষ্ঠানের তথ্য
     </div>
     <div class="fg2">
       <div class="fld">
@@ -295,8 +319,7 @@ body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh
   </div>
   <div class="card">
     <div class="ctitle">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-      মিলের মাস ও বছর
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>মিলের মাস ও বছর
     </div>
     <div class="fg2">
       <div class="fld">
@@ -317,29 +340,44 @@ body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh
       </div>
     </div>
   </div>
-  <div class="card" style="background:linear-gradient(135deg,#eaf2ff,#fff)">
-    <div style="font-size:11px;color:var(--tx2);margin-bottom:4px">📅 আজকের তারিখ</div>
-    <div style="font-size:15px;font-weight:600;color:var(--pr)" id="todayShow"></div>
-    <div class="divider"></div>
+  <div class="card" style="background:linear-gradient(135deg,var(--bg2),var(--bg))">
     <div class="fg2">
       <div>
-        <div style="font-size:11px;color:var(--tx2);margin-bottom:3px">মোট বাজার খরচ (স্বয়ংক্রিয়)</div>
-        <div class="cval" id="autoTotalCost">৳ ০.০০</div>
+        <div style="font-size:11px;color:var(--tx2);margin-bottom:3px">📅 আজকের তারিখ</div>
+        <div style="font-size:14px;font-weight:600;color:var(--pr)" id="todayShow"></div>
       </div>
       <div>
-        <div style="font-size:11px;color:var(--tx2);margin-bottom:3px">মিল প্রতি রেট (স্বয়ংক্রিয়)</div>
+        <div style="font-size:11px;color:var(--tx2);margin-bottom:3px">মিল রেট (স্বয়ংক্রিয়)</div>
         <div class="cval" id="autoRate">৳ ০.০০</div>
       </div>
     </div>
-    <div style="font-size:11px;color:var(--tx3);margin-top:8px">* বাজার খরচ ও দৈনিক মিল এন্ট্রি থেকে স্বয়ংক্রিয়ভাবে হিসাব হবে</div>
+    <div class="divider"></div>
+    <div style="font-size:11px;color:var(--tx2)">মোট বাজার: <strong id="autoTotalCost" class="c-ok">৳০.০০</strong> &nbsp;|&nbsp; মোট মিল: <strong id="autoTotalMeals" class="c-ok">০.০</strong> টি</div>
+  </div>
+  <!-- CSV -->
+  <div class="card">
+    <div class="ctitle">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>CSV ডেটা Import / Export
+    </div>
+    <div class="csv-row">
+      <div class="csv-label">📤 Export — সব ডেটা CSV-তে ডাউনলোড করুন</div>
+      <button class="btn btn-ok btn-sm" onclick="exportCSV()">Export CSV</button>
+    </div>
+    <div class="csv-row">
+      <div class="csv-label">📥 Import — CSV ফাইল থেকে ডেটা লোড করুন</div>
+      <div class="file-input-wrap">
+        <button class="btn btn-warn btn-sm">Import CSV</button>
+        <input type="file" accept=".csv" onchange="importCSV(event)"/>
+      </div>
+    </div>
+    <div style="font-size:10px;color:var(--tx3);margin-top:6px">⚠️ Import করলে বর্তমান ডেটা আর্কাইভে যাবে। Export করা ফাইলই পুনরায় Import করুন।</div>
   </div>
   <div class="bgrp noprint">
     <button class="btn btn-p" onclick="goTab('members')">
-      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      পরবর্তী: সদস্য যোগ করুন
+      <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>সদস্য যোগ করুন
     </button>
   </div>
-  <div id="arcSection" style="display:none;margin-top:20px">
+  <div id="arcSection" style="display:none;margin-top:18px">
     <div class="arc-title">📦 পূর্ববর্তী সংরক্ষিত হিসাব</div>
     <div id="arcList"></div>
   </div>
@@ -349,8 +387,7 @@ body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh
 <div class="sec" id="sec-members">
   <div class="card noprint">
     <div class="ctitle">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
-      নতুন সদস্য যোগ করুন
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>নতুন সদস্য যোগ করুন
     </div>
     <div class="fld mb12">
       <label>সদস্যের নাম *</label>
@@ -358,12 +395,10 @@ body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh
     </div>
     <div class="bgrp">
       <button class="btn btn-p" onclick="addMember()">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-        সদস্য যোগ করুন
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>সদস্য যোগ করুন
       </button>
       <button class="btn btn-s" onclick="loadDemo()">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        উদাহরণ ডেটা
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>উদাহরণ ডেটা
       </button>
     </div>
   </div>
@@ -374,8 +409,7 @@ body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh
 <div class="sec" id="sec-daily">
   <div class="card noprint">
     <div class="ctitle">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-      তারিখ ও সদস্য বেছে নিন
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>তারিখ ও সদস্য বেছে নিন
     </div>
     <div class="fg2 mb12">
       <div class="fld">
@@ -383,7 +417,7 @@ body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh
         <input type="date" id="dailyDate" onchange="renderDailyEntry()"/>
       </div>
       <div class="fld">
-        <label>সদস্য (ফাঁকা রাখলে সবাই দেখাবে)</label>
+        <label>সদস্য ফিল্টার</label>
         <select id="dailyMember" onchange="renderDailyEntry()">
           <option value="">-- সবাই --</option>
         </select>
@@ -393,23 +427,17 @@ body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh
   <div id="dailyEntryArea">
     <div class="empty">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-      <h3>তারিখ সিলেক্ট করুন</h3>
-      <p>উপরে তারিখ বেছে নিলে সদস্যদের মিল এন্ট্রি দেওয়া যাবে</p>
+      <h3>তারিখ সিলেক্ট করুন</h3><p>উপরে তারিখ বেছে নিন</p>
     </div>
   </div>
-  <!-- Daily log table -->
   <div class="card mt16">
     <div class="ctitle">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 17H5a2 2 0 0 0-2 2"/><rect x="3" y="3" width="11" height="5" rx="1"/></svg>
-      দৈনিক মিলের লগ
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 17H5a2 2 0 0 0-2 2"/><rect x="3" y="3" width="11" height="5" rx="1"/></svg>দৈনিক মিলের লগ
     </div>
     <div class="filter-bar noprint">
-      <select id="logMonthFilter" onchange="renderDailyLog()">
-        <option value="">-- সব মাস --</option>
-      </select>
-      <select id="logMemberFilter" onchange="renderDailyLog()">
-        <option value="">-- সব সদস্য --</option>
-      </select>
+      <select id="logYearFilter" onchange="renderDailyLog()"><option value="">-- বছর --</option></select>
+      <select id="logMonthFilter" onchange="renderDailyLog()"><option value="">-- মাস --</option></select>
+      <select id="logMemberFilter" onchange="renderDailyLog()"><option value="">-- সব সদস্য --</option></select>
     </div>
     <div id="dailyLogArea"></div>
   </div>
@@ -419,8 +447,7 @@ body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh
 <div class="sec" id="sec-bazar">
   <div class="card noprint">
     <div class="ctitle">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-      নতুন বাজার খরচ যোগ করুন
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>নতুন বাজার খরচ যোগ করুন
     </div>
     <div class="fg2 mb12">
       <div class="fld">
@@ -438,23 +465,20 @@ body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh
     </div>
     <div class="bgrp">
       <button class="btn btn-p" onclick="addBazar()">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-        যোগ করুন
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>যোগ করুন
       </button>
     </div>
   </div>
   <div class="card">
     <div class="ctitle">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-      বাজার খরচের তালিকা
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>বাজার খরচের তালিকা
     </div>
     <div class="filter-bar noprint">
-      <select id="bazarMonthFilter" onchange="renderBazarList()">
-        <option value="">-- সব মাস --</option>
-      </select>
+      <select id="bazarYearFilter" onchange="renderBazarList()"><option value="">-- বছর --</option></select>
+      <select id="bazarMonthFilter" onchange="renderBazarList()"><option value="">-- মাস --</option></select>
     </div>
     <div id="bazarListArea"></div>
-    <div id="bazarTotalBar" style="margin-top:10px;padding:10px 12px;background:var(--ok2);border-radius:var(--r);font-weight:700;font-size:14px;color:var(--ok);display:none"></div>
+    <div id="bazarTotalBar" style="margin-top:8px;padding:8px 10px;background:var(--ok2);border-radius:var(--r);font-weight:700;font-size:13px;color:var(--ok);display:none"></div>
   </div>
 </div>
 
@@ -462,15 +486,12 @@ body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh
 <div class="sec" id="sec-deposit">
   <div class="card noprint">
     <div class="ctitle">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
-      নতুন জমা যোগ করুন
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>নতুন জমা যোগ করুন
     </div>
     <div class="fg2 mb12">
       <div class="fld">
         <label>সদস্য *</label>
-        <select id="depMember">
-          <option value="">-- সদস্য বেছে নিন --</option>
-        </select>
+        <select id="depMember"><option value="">-- সদস্য বেছে নিন --</option></select>
       </div>
       <div class="fld">
         <label>তারিখ *</label>
@@ -483,23 +504,18 @@ body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh
     </div>
     <div class="bgrp">
       <button class="btn btn-p" onclick="addDeposit()">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-        জমা যোগ করুন
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>জমা যোগ করুন
       </button>
     </div>
   </div>
   <div class="card">
     <div class="ctitle">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-      জমার তালিকা
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>জমার তালিকা
     </div>
     <div class="filter-bar noprint">
-      <select id="depMonthFilter" onchange="renderDepositList()">
-        <option value="">-- সব মাস --</option>
-      </select>
-      <select id="depMemberFilter" onchange="renderDepositList()">
-        <option value="">-- সব সদস্য --</option>
-      </select>
+      <select id="depYearFilter" onchange="renderDepositList()"><option value="">-- বছর --</option></select>
+      <select id="depMonthFilter" onchange="renderDepositList()"><option value="">-- মাস --</option></select>
+      <select id="depMemberFilter" onchange="renderDepositList()"><option value="">-- সব সদস্য --</option></select>
     </div>
     <div id="depositListArea"></div>
   </div>
@@ -507,23 +523,12 @@ body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh
 
 <!-- ===== OVERVIEW ===== -->
 <div class="sec" id="sec-overview">
-  <div id="ovContent">
-    <div class="empty">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="11" height="5" rx="1"/></svg>
-      <h3>এখনো হিসাব নেই</h3>
-      <p>দৈনিক মিল ও বাজার খরচ এন্ট্রি করুন</p>
-    </div>
-  </div>
+  <div id="ovContent"><div class="empty"><h3>ডেটা নেই</h3><p>দৈনিক মিল ও বাজার খরচ এন্ট্রি করুন</p></div></div>
 </div>
 
 <!-- ===== INDIVIDUAL ===== -->
 <div class="sec" id="sec-individual">
-  <div id="indContent">
-    <div class="empty">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      <h3>সদস্য নেই</h3>
-    </div>
-  </div>
+  <div id="indContent"><div class="empty"><h3>সদস্য নেই</h3></div></div>
 </div>
 
 </main>
@@ -532,10 +537,7 @@ body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh
 <div class="moverlay" id="editModal">
   <div class="modal">
     <div class="mtit">সদস্য সম্পাদনা <button class="mclose" onclick="closeModal('editModal')">✕</button></div>
-    <div class="fld mb12">
-      <label>নাম</label>
-      <input type="text" id="eName"/>
-    </div>
+    <div class="fld mb12"><label>নাম</label><input type="text" id="eName"/></div>
     <input type="hidden" id="eIdx"/>
     <div class="bgrp mt12">
       <button class="btn btn-p" style="width:100%;justify-content:center" onclick="saveEdit()">সংরক্ষণ করুন</button>
@@ -547,60 +549,45 @@ body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh
 
 <script>
 // ============================================================
+// CONSTANTS
+// ============================================================
+const MONTHS=['','জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+const DAYS=['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
+const D={'0':'০','1':'১','2':'২','3':'৩','4':'৪','5':'৫','6':'৬','7':'৭','8':'৮','9':'৯'};
+const bn=n=>String(n).replace(/[0-9]/g,d=>D[d]);
+const today=()=>new Date().toISOString().slice(0,10);
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+
+// ============================================================
 // STATE
 // ============================================================
-const MONTHS = ['','জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
-const DAYS   = ['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
-const D = {'0':'০','1':'১','2':'২','3':'৩','4':'৪','5':'৫','6':'৬','7':'৭','8':'৮','9':'৯'};
-const bn = n => String(n).replace(/[0-9]/g,d=>D[d]);
-const today = () => new Date().toISOString().slice(0,10);
+let S={org:'',addr:'',month:'',year:'',members:[],dailyMeals:[],bazar:[],deposits:[],ts:Date.now()};
 
-// S = main state
-let S = {
-  org:'', addr:'', month:'', year:'',
-  members:[],    // [{id, name}]
-  dailyMeals:[], // [{id, memberId, date, morning, noon, night, total}]
-  bazar:[],      // [{id, date, amt, desc}]
-  deposits:[],   // [{id, memberId, date, amt}]
-  ts: Date.now()
-};
+const persist=()=>localStorage.setItem('mc_v4',JSON.stringify(S));
+const getArc=()=>{try{return JSON.parse(localStorage.getItem('mc_arc')||'[]');}catch{return [];}};
+const saveArc=a=>localStorage.setItem('mc_arc',JSON.stringify(a.slice(0,12)));
 
-function persist(){ localStorage.setItem('mc_v4', JSON.stringify(S)); }
-function getArc(){ try{ return JSON.parse(localStorage.getItem('mc_arc')||'[]'); }catch{ return []; } }
-function saveArc(a){ localStorage.setItem('mc_arc', JSON.stringify(a.slice(0,12))); }
-function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
+// Computed
+const totalBazar=()=>S.bazar.reduce((s,b)=>s+b.amt,0);
+const totalMealsAll=()=>S.dailyMeals.reduce((s,e)=>s+e.total,0);
+const memberMeals=mid=>S.dailyMeals.filter(e=>e.memberId===mid).reduce((s,e)=>s+e.total,0);
+const memberDeposits=mid=>S.deposits.filter(d=>d.memberId===mid).reduce((s,d)=>s+d.amt,0);
+const mealRate=()=>{const t=totalMealsAll();return t>0?totalBazar()/t:0;};
 
 function todayStr(){
   const d=new Date();
   return DAYS[d.getDay()]+', '+bn(d.getDate())+' '+MONTHS[d.getMonth()+1]+' '+bn(d.getFullYear());
 }
 
-// Computed helpers
-function totalBazar(){
-  return S.bazar.reduce((s,b)=>s+b.amt,0);
-}
-function totalMealsAll(){
-  return S.dailyMeals.reduce((s,e)=>s+e.total,0);
-}
-function memberMeals(mid){
-  return S.dailyMeals.filter(e=>e.memberId===mid).reduce((s,e)=>s+e.total,0);
-}
-function memberDeposits(mid){
-  return S.deposits.filter(d=>d.memberId===mid).reduce((s,d)=>s+d.amt,0);
-}
-function mealRate(){
-  const tm=totalMealsAll();
-  return tm>0 ? totalBazar()/tm : 0;
-}
-
 // ============================================================
 // INIT
 // ============================================================
 function init(){
+  // Year dropdown
   const ys=document.getElementById('selYear');
   for(let y=2020;y<=2040;y++){
     const o=document.createElement('option');
-    o.value=y; o.textContent=bn(y)+' ('+y+')'; ys.appendChild(o);
+    o.value=y;o.textContent=bn(y)+' ('+y+')';ys.appendChild(o);
   }
   ys.value=new Date().getFullYear();
   document.getElementById('todayShow').textContent=todayStr();
@@ -608,11 +595,24 @@ function init(){
   document.getElementById('bazarDate').value=today();
   document.getElementById('depDate').value=today();
 
+  // Load saved
   const saved=localStorage.getItem('mc_v4');
-  if(saved){ try{ S=JSON.parse(saved); }catch{} }
-  applyForm(); renderMemberSelects(); renderMembers();
-  renderDailyLog(); renderBazarList(); renderDepositList();
-  updateAutoCalc(); renderArc();
+  if(saved){try{S=JSON.parse(saved);}catch{}}
+  if(!S.dailyMeals) S.dailyMeals=[];
+  if(!S.bazar) S.bazar=[];
+  if(!S.deposits) S.deposits=[];
+
+  // Theme
+  if(localStorage.getItem('mc_theme')==='dark') applyTheme('dark');
+
+  applyForm();
+  renderMemberSelects();
+  renderMembers();
+  renderDailyLog();
+  renderBazarList();
+  renderDepositList();
+  updateAutoCalc();
+  renderArc();
 }
 
 function applyForm(){
@@ -620,18 +620,39 @@ function applyForm(){
   document.getElementById('orgAddr').value=S.addr||'';
   document.getElementById('selMonth').value=S.month||'';
   document.getElementById('selYear').value=S.year||new Date().getFullYear();
-  updateTagline(); updateAutoCalc();
+  updateHeader();
+  updateAutoCalc();
 }
 
-function updateTagline(){
-  document.getElementById('tagline').textContent=
-    S.org?(S.org+(S.addr?', '+S.addr:'')):'দল ভিত্তিক খাবার খরচ ব্যবস্থাপনা';
+function updateHeader(){
+  document.getElementById('hdrOrg').textContent=S.org||'';
+  document.getElementById('hdrAddr').textContent=S.addr||'';
 }
 
 function updateAutoCalc(){
-  const cost=totalBazar(), rate=mealRate();
-  document.getElementById('autoTotalCost').textContent='৳ '+bn(cost.toFixed(2));
-  document.getElementById('autoRate').textContent='৳ '+(rate?bn(rate.toFixed(2)):'০.০০');
+  const cost=totalBazar(),meals=totalMealsAll(),rate=mealRate();
+  document.getElementById('autoTotalCost').textContent='৳'+bn(cost.toFixed(2));
+  document.getElementById('autoTotalMeals').textContent=bn(meals.toFixed(1));
+  document.getElementById('autoRate').textContent='৳'+(rate?bn(rate.toFixed(2)):'০.০০');
+}
+
+// ============================================================
+// THEME
+// ============================================================
+function toggleTheme(){
+  const isDark=document.body.classList.contains('dark');
+  applyTheme(isDark?'light':'dark');
+}
+function applyTheme(t){
+  if(t==='dark'){
+    document.body.classList.add('dark');
+    document.getElementById('themeBtn').textContent='🌙';
+    localStorage.setItem('mc_theme','dark');
+  }else{
+    document.body.classList.remove('dark');
+    document.getElementById('themeBtn').textContent='☀️';
+    localStorage.setItem('mc_theme','light');
+  }
 }
 
 // ============================================================
@@ -642,7 +663,8 @@ function saveSetup(){
   S.addr=document.getElementById('orgAddr').value.trim();
   S.month=document.getElementById('selMonth').value;
   S.year=document.getElementById('selYear').value;
-  persist(); updateTagline();
+  persist();
+  updateHeader();
 }
 
 // ============================================================
@@ -651,29 +673,25 @@ function saveSetup(){
 function addMember(){
   const name=document.getElementById('newName').value.trim();
   if(!name){toast('নাম দিন');return;}
-  if(S.members.find(m=>m.name.toLowerCase()===name.toLowerCase())){
-    toast('এই নামে সদস্য ইতিমধ্যে আছে');return;
-  }
+  if(S.members.find(m=>m.name.toLowerCase()===name.toLowerCase())){toast('এই নামে সদস্য আছে');return;}
   S.members.push({id:uid(),name});
-  persist(); renderMemberSelects(); renderMembers();
+  persist();renderMemberSelects();renderMembers();
   document.getElementById('newName').value='';
   document.getElementById('newName').focus();
-  toast('✅ '+name+' যোগ হয়েছে');
+  toast('✅ '+name);
 }
 
 function delMember(id){
   const m=S.members.find(x=>x.id===id);
-  if(!m) return;
-  if(!confirm(m.name+' মুছবেন? তার সব মিল ও জমার ডেটাও মুছে যাবে।')) return;
+  if(!m||!confirm(m.name+' মুছবেন? তার সব ডেটাও যাবে।')) return;
   S.members=S.members.filter(x=>x.id!==id);
   S.dailyMeals=S.dailyMeals.filter(x=>x.memberId!==id);
   S.deposits=S.deposits.filter(x=>x.memberId!==id);
-  persist(); renderMemberSelects(); renderMembers(); toast('মুছে ফেলা হয়েছে');
+  persist();renderMemberSelects();renderMembers();toast('মুছে ফেলা হয়েছে');
 }
 
 function openEdit(id){
-  const m=S.members.find(x=>x.id===id);
-  if(!m) return;
+  const m=S.members.find(x=>x.id===id);if(!m)return;
   document.getElementById('eName').value=m.name;
   document.getElementById('eIdx').value=id;
   document.getElementById('editModal').classList.add('on');
@@ -684,189 +702,145 @@ function saveEdit(){
   const name=document.getElementById('eName').value.trim();
   if(!name){toast('নাম দিন');return;}
   const m=S.members.find(x=>x.id===id);
-  if(m) m.name=name;
-  persist(); renderMemberSelects(); renderMembers(); closeModal('editModal');
-  toast('✅ আপডেট হয়েছে');
+  if(m)m.name=name;
+  persist();renderMemberSelects();renderMembers();closeModal('editModal');toast('✅ আপডেট হয়েছে');
 }
 
-function closeModal(id){ document.getElementById(id).classList.remove('on'); }
+function closeModal(id){document.getElementById(id).classList.remove('on');}
 document.getElementById('editModal').addEventListener('click',e=>{
-  if(e.target===document.getElementById('editModal')) closeModal('editModal');
+  if(e.target===document.getElementById('editModal'))closeModal('editModal');
 });
 
-function initials(name){
-  const p=name.trim().split(' ');
-  return p.length>=2?(p[p.length-2][0]||'')+(p[p.length-1][0]||''):name.substring(0,2).toUpperCase();
-}
+const initials=name=>{const p=name.trim().split(' ');return p.length>=2?(p[p.length-2][0]||'')+(p[p.length-1][0]||''):name.substring(0,2).toUpperCase();};
 
 function renderMembers(){
   const el=document.getElementById('mList');
   if(!S.members.length){
-    el.innerHTML='<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:52px;height:52px;opacity:.2;margin-bottom:11px"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><h3>কোনো সদস্য নেই</h3><p>উপরে নাম লিখে যোগ করুন</p></div>';
+    el.innerHTML='<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:50px;height:50px;opacity:.2;margin-bottom:10px"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><h3>কোনো সদস্য নেই</h3><p>উপরে নাম লিখুন</p></div>';
     return;
   }
-  let h='';
-  S.members.forEach(m=>{
-    const meals=memberMeals(m.id), dep=memberDeposits(m.id);
-    h+=`<div class="mitem">
+  el.innerHTML=S.members.map(m=>{
+    const meals=memberMeals(m.id),dep=memberDeposits(m.id);
+    return `<div class="mitem">
       <div class="mavtr">${initials(m.name)}</div>
       <div class="minfo">
         <div class="mname">${m.name}</div>
-        <div class="mmeta">মোট মিল: ${bn(meals.toFixed(1))} টি &nbsp;|&nbsp; মোট জমা: ৳${bn(dep.toLocaleString())}</div>
+        <div class="mmeta">মিল: ${bn(meals.toFixed(1))} টি &nbsp;|&nbsp; জমা: ৳${bn(dep.toLocaleString())}</div>
       </div>
-      <div style="display:flex;gap:5px">
-        <button class="ibtn ed" onclick="openEdit('${m.id}')" title="সম্পাদনা"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
-        <button class="ibtn" onclick="delMember('${m.id}')" title="মুছুন"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></button>
+      <div style="display:flex;gap:4px">
+        <button class="ibtn ed" onclick="openEdit('${m.id}')" title="সম্পাদনা"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+        <button class="ibtn" onclick="delMember('${m.id}')" title="মুছুন"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></button>
       </div>
     </div>`;
-  });
-  el.innerHTML=h;
+  }).join('');
 }
 
+// ============================================================
+// SELECTS & FILTERS
+// ============================================================
 function renderMemberSelects(){
-  const selects=['dailyMember','depMember','logMemberFilter','depMemberFilter'];
-  selects.forEach(sid=>{
-    const el=document.getElementById(sid);
-    if(!el) return;
+  ['dailyMember','depMember','logMemberFilter','depMemberFilter'].forEach(sid=>{
+    const el=document.getElementById(sid);if(!el)return;
     const cur=el.value;
     const isFilter=sid.includes('Filter');
     el.innerHTML=isFilter?'<option value="">-- সব সদস্য --</option>':'<option value="">-- সদস্য বেছে নিন --</option>';
-    S.members.forEach(m=>{
-      const o=document.createElement('option');
-      o.value=m.id; o.textContent=m.name; el.appendChild(o);
-    });
-    if(cur) el.value=cur;
+    S.members.forEach(m=>{const o=document.createElement('option');o.value=m.id;o.textContent=m.name;el.appendChild(o);});
+    if(cur)el.value=cur;
   });
-  populateMonthFilters();
+  populateYearMonthFilters();
 }
 
-function populateMonthFilters(){
-  // collect unique year-months from bazar and deposits
-  const months=new Set();
+function populateYearMonthFilters(){
+  const years=new Set(),months=new Set();
   [...S.bazar,...S.deposits,...S.dailyMeals].forEach(e=>{
-    if(e.date) months.add(e.date.slice(0,7));
+    if(e.date){years.add(e.date.slice(0,4));months.add(e.date.slice(5,7));}
   });
-  const sorted=[...months].sort().reverse();
-  ['bazarMonthFilter','depMonthFilter','logMonthFilter'].forEach(sid=>{
-    const el=document.getElementById(sid);
-    if(!el) return;
-    const cur=el.value;
-    el.innerHTML='<option value="">-- সব মাস --</option>';
-    sorted.forEach(ym=>{
-      const [y,m]=ym.split('-');
-      const o=document.createElement('option');
-      o.value=ym; o.textContent=MONTHS[parseInt(m)]+' '+y; el.appendChild(o);
-    });
-    if(cur) el.value=cur;
+  const sortedYears=[...years].sort().reverse();
+  const sortedMonths=[...months].sort();
+
+  [['bazarYearFilter','bazarMonthFilter'],['depYearFilter','depMonthFilter'],['logYearFilter','logMonthFilter']].forEach(([yid,mid])=>{
+    const yel=document.getElementById(yid),mel=document.getElementById(mid);
+    if(!yel||!mel)return;
+    const cy=yel.value,cm=mel.value;
+    yel.innerHTML='<option value="">-- বছর --</option>';
+    mel.innerHTML='<option value="">-- মাস --</option>';
+    sortedYears.forEach(y=>{const o=document.createElement('option');o.value=y;o.textContent=y;yel.appendChild(o);});
+    sortedMonths.forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=MONTHS[parseInt(m)];mel.appendChild(o);});
+    if(cy)yel.value=cy;
+    if(cm)mel.value=cm;
   });
 }
 
 // ============================================================
-// DAILY MEAL ENTRY
+// DAILY MEAL
 // ============================================================
 function renderDailyEntry(){
   const date=document.getElementById('dailyDate').value;
   const filterMid=document.getElementById('dailyMember').value;
   const area=document.getElementById('dailyEntryArea');
-  if(!date){ area.innerHTML='<div class="empty"><h3>তারিখ সিলেক্ট করুন</h3></div>'; return; }
-  if(!S.members.length){ area.innerHTML='<div class="empty"><h3>আগে সদস্য যোগ করুন</h3></div>'; return; }
-
+  if(!date){area.innerHTML='<div class="empty"><h3>তারিখ সিলেক্ট করুন</h3></div>';return;}
+  if(!S.members.length){area.innerHTML='<div class="empty"><h3>আগে সদস্য যোগ করুন</h3></div>';return;}
   const members=filterMid?S.members.filter(m=>m.id===filterMid):S.members;
   const d=new Date(date);
   const dateLabel=DAYS[d.getDay()]+', '+bn(d.getDate())+' '+MONTHS[d.getMonth()+1]+' '+bn(d.getFullYear());
-
-  let rows='';
-  members.forEach(m=>{
+  const rows=members.map(m=>{
     const entry=S.dailyMeals.find(e=>e.memberId===m.id&&e.date===date);
-    const mor=entry?entry.morning:false;
-    const noo=entry?entry.noon:false;
-    const nig=entry?entry.night:false;
-    const tot=entry?entry.total:0;
-    rows+=`<div class="member-meal-row" id="mrow-${m.id}">
+    const mor=entry?entry.morning:false,noo=entry?entry.noon:false,nig=entry?entry.night:false,tot=entry?entry.total:0;
+    return `<div class="member-meal-row">
       <div class="mmr-name">${m.name}</div>
       <div class="meal-checks">
         <label class="meal-chk morning ${mor?'checked':''}" onclick="toggleMeal('${m.id}','${date}','morning',this)">
-          <input type="checkbox" ${mor?'checked':''}/>
-          ☀️ সকাল <span style="opacity:.7">(০.৫)</span>
+          <input type="checkbox" ${mor?'checked':''}/>☀️ সকাল
         </label>
         <label class="meal-chk noon ${noo?'checked':''}" onclick="toggleMeal('${m.id}','${date}','noon',this)">
-          <input type="checkbox" ${noo?'checked':''}/>
-          🌤️ দুপুর <span style="opacity:.7">(১.০)</span>
+          <input type="checkbox" ${noo?'checked':''}/>🌤️ দুপুর
         </label>
         <label class="meal-chk night ${nig?'checked':''}" onclick="toggleMeal('${m.id}','${date}','night',this)">
-          <input type="checkbox" ${nig?'checked':''}/>
-          🌙 রাত <span style="opacity:.7">(১.০)</span>
+          <input type="checkbox" ${nig?'checked':''}/>🌙 রাত
         </label>
       </div>
-      <div class="mmr-total" id="mtot-${m.id}">${bn(tot.toFixed(1))} মিল</div>
+      <div class="mmr-total" id="mtot-${m.id}">${bn(tot.toFixed(1))}</div>
     </div>`;
-  });
-
-  area.innerHTML=`
-    <div class="meal-date-bar noprint">
-      <span class="dlbl">📅 ${dateLabel}</span>
-      <span style="font-size:12px;opacity:.8">সকাল=০.৫ | দুপুর=১.০ | রাত=১.০ | সর্বোচ্চ=২.৫</span>
-    </div>
-    ${rows}`;
+  }).join('');
+  area.innerHTML=`<div class="meal-date-bar noprint"><span class="dlbl">📅 ${dateLabel}</span><span style="font-size:10px;opacity:.8">সকাল=০.৫ | দুপুর=১ | রাত=১ | সর্বোচ্চ=২.৫</span></div>${rows}`;
 }
 
-function toggleMeal(memberId, date, slot, labelEl){
+function toggleMeal(memberId,date,slot,labelEl){
   labelEl.classList.toggle('checked');
   const checked=labelEl.classList.contains('checked');
-
   let entry=S.dailyMeals.find(e=>e.memberId===memberId&&e.date===date);
-  if(!entry){
-    entry={id:uid(),memberId,date,morning:false,noon:false,night:false,total:0};
-    S.dailyMeals.push(entry);
-  }
+  if(!entry){entry={id:uid(),memberId,date,morning:false,noon:false,night:false,total:0};S.dailyMeals.push(entry);}
   entry[slot]=checked;
   entry.total=(entry.morning?0.5:0)+(entry.noon?1:0)+(entry.night?1:0);
-
-  // Remove entry if all zero
-  if(entry.total===0){
-    S.dailyMeals=S.dailyMeals.filter(e=>!(e.memberId===memberId&&e.date===date));
-  }
-
-  document.getElementById('mtot-'+memberId).textContent=bn(entry.total.toFixed(1))+' মিল';
-  persist(); updateAutoCalc(); renderDailyLog(); renderMembers();
+  if(entry.total===0)S.dailyMeals=S.dailyMeals.filter(e=>!(e.memberId===memberId&&e.date===date));
+  const tot=document.getElementById('mtot-'+memberId);
+  if(tot)tot.textContent=bn(entry.total.toFixed(1));
+  persist();updateAutoCalc();renderDailyLog();renderMembers();populateYearMonthFilters();
 }
 
 function renderDailyLog(){
   const el=document.getElementById('dailyLogArea');
+  const yf=document.getElementById('logYearFilter').value;
   const mf=document.getElementById('logMonthFilter').value;
   const memf=document.getElementById('logMemberFilter').value;
   let data=[...S.dailyMeals];
-  if(mf) data=data.filter(e=>e.date&&e.date.startsWith(mf));
-  if(memf) data=data.filter(e=>e.memberId===memf);
+  if(yf)data=data.filter(e=>e.date&&e.date.startsWith(yf));
+  if(mf)data=data.filter(e=>e.date&&e.date.slice(5,7)===mf);
+  if(memf)data=data.filter(e=>e.memberId===memf);
   data.sort((a,b)=>b.date.localeCompare(a.date));
-  if(!data.length){ el.innerHTML='<div style="text-align:center;padding:20px;color:var(--tx2);font-size:13px">কোনো এন্ট্রি নেই</div>'; return; }
-  let rows='';
-  data.forEach(e=>{
-    const m=S.members.find(x=>x.id===e.memberId);
-    if(!m) return;
-    const d=new Date(e.date);
-    const dl=MONTHS[d.getMonth()+1]+' '+bn(d.getDate())+', '+bn(d.getFullYear());
-    rows+=`<tr>
-      <td>${dl}</td>
-      <td>${m.name}</td>
-      <td>${e.morning?'✅':'-'}</td>
-      <td>${e.noon?'✅':'-'}</td>
-      <td>${e.night?'✅':'-'}</td>
-      <td><strong>${bn(e.total.toFixed(1))}</strong></td>
-      <td><button class="btn btn-danger btn-sm" onclick="delDailyEntry('${e.id}')">মুছুন</button></td>
-    </tr>`;
-  });
-  el.innerHTML=`<div class="twrap"><table class="mtbl">
-    <thead><tr><th>তারিখ</th><th>নাম</th><th>সকাল</th><th>দুপুর</th><th>রাত</th><th>মিল</th><th></th></tr></thead>
-    <tbody>${rows}</tbody>
-  </table></div>`;
+  if(!data.length){el.innerHTML='<div style="text-align:center;padding:18px;color:var(--tx2);font-size:12px">কোনো এন্ট্রি নেই</div>';return;}
+  el.innerHTML=`<div class="twrap"><table class="mtbl"><thead><tr><th>তারিখ</th><th>নাম</th><th>সকাল</th><th>দুপুর</th><th>রাত</th><th>মিল</th><th class="noprint"></th></tr></thead><tbody>`+
+    data.map(e=>{
+      const m=S.members.find(x=>x.id===e.memberId);if(!m)return '';
+      const d=new Date(e.date);
+      return `<tr><td>${MONTHS[d.getMonth()+1]} ${bn(d.getDate())}, ${bn(d.getFullYear())}</td><td>${m.name}</td><td>${e.morning?'✅':'-'}</td><td>${e.noon?'✅':'-'}</td><td>${e.night?'✅':'-'}</td><td><strong>${bn(e.total.toFixed(1))}</strong></td><td class="noprint"><button class="btn btn-danger btn-sm" onclick="delDailyEntry('${e.id}')">মুছুন</button></td></tr>`;
+    }).join('')+'</tbody></table></div>';
 }
 
 function delDailyEntry(id){
-  if(!confirm('এই এন্ট্রি মুছবেন?')) return;
+  if(!confirm('মুছবেন?'))return;
   S.dailyMeals=S.dailyMeals.filter(e=>e.id!==id);
-  persist(); updateAutoCalc(); renderDailyLog(); renderMembers(); renderDailyEntry();
-  toast('মুছে ফেলা হয়েছে');
+  persist();updateAutoCalc();renderDailyLog();renderMembers();renderDailyEntry();populateYearMonthFilters();toast('মুছে ফেলা হয়েছে');
 }
 
 // ============================================================
@@ -877,49 +851,39 @@ function addBazar(){
   const amt=parseFloat(document.getElementById('bazarAmt').value)||0;
   const desc=document.getElementById('bazarDesc').value.trim();
   if(!date){toast('তারিখ দিন');return;}
-  if(!amt){toast('খরচের পরিমাণ দিন');return;}
+  if(!amt){toast('পরিমাণ দিন');return;}
   S.bazar.push({id:uid(),date,amt,desc});
   S.bazar.sort((a,b)=>b.date.localeCompare(a.date));
-  persist(); populateMonthFilters(); renderBazarList(); updateAutoCalc();
+  persist();populateYearMonthFilters();renderBazarList();updateAutoCalc();
   document.getElementById('bazarAmt').value='';
   document.getElementById('bazarDesc').value='';
   toast('✅ বাজার খরচ যোগ হয়েছে');
 }
 
 function delBazar(id){
-  if(!confirm('এই খরচ মুছবেন?')) return;
+  if(!confirm('মুছবেন?'))return;
   S.bazar=S.bazar.filter(b=>b.id!==id);
-  persist(); renderBazarList(); updateAutoCalc(); toast('মুছে ফেলা হয়েছে');
+  persist();renderBazarList();updateAutoCalc();populateYearMonthFilters();toast('মুছে ফেলা হয়েছে');
 }
 
 function renderBazarList(){
   const el=document.getElementById('bazarListArea');
   const tb=document.getElementById('bazarTotalBar');
+  const yf=document.getElementById('bazarYearFilter').value;
   const mf=document.getElementById('bazarMonthFilter').value;
-  let data=mf?S.bazar.filter(b=>b.date&&b.date.startsWith(mf)):[...S.bazar];
-  if(!data.length){
-    el.innerHTML='<div style="text-align:center;padding:20px;color:var(--tx2);font-size:13px">কোনো খরচ নেই</div>';
-    tb.style.display='none'; return;
-  }
+  let data=[...S.bazar];
+  if(yf)data=data.filter(b=>b.date&&b.date.startsWith(yf));
+  if(mf)data=data.filter(b=>b.date&&b.date.slice(5,7)===mf);
+  if(!data.length){el.innerHTML='<div style="text-align:center;padding:18px;color:var(--tx2);font-size:12px">কোনো খরচ নেই</div>';tb.style.display='none';return;}
   let total=0;
-  let rows='';
-  data.forEach(b=>{
-    total+=b.amt;
-    const d=new Date(b.date);
-    const dl=MONTHS[d.getMonth()+1]+' '+bn(d.getDate())+', '+bn(d.getFullYear());
-    rows+=`<tr>
-      <td>${dl}</td>
-      <td style="text-align:left">${b.desc||'—'}</td>
-      <td><strong class="c-ok">৳${bn(b.amt.toFixed(2))}</strong></td>
-      <td><button class="btn btn-danger btn-sm" onclick="delBazar('${b.id}')">মুছুন</button></td>
-    </tr>`;
-  });
-  el.innerHTML=`<div class="twrap"><table class="mtbl">
-    <thead><tr><th>তারিখ</th><th>বিবরণ</th><th>খরচ (৳)</th><th></th></tr></thead>
-    <tbody>${rows}</tbody>
-  </table></div>`;
+  el.innerHTML=`<div class="twrap"><table class="mtbl"><thead><tr><th>তারিখ</th><th>বিবরণ</th><th>খরচ (৳)</th><th class="noprint"></th></tr></thead><tbody>`+
+    data.map(b=>{
+      total+=b.amt;
+      const d=new Date(b.date);
+      return `<tr><td>${MONTHS[d.getMonth()+1]} ${bn(d.getDate())}, ${bn(d.getFullYear())}</td><td style="text-align:left">${b.desc||'—'}</td><td><strong class="c-ok">৳${bn(b.amt.toFixed(2))}</strong></td><td class="noprint"><button class="btn btn-danger btn-sm" onclick="delBazar('${b.id}')">মুছুন</button></td></tr>`;
+    }).join('')+'</tbody></table></div>';
   tb.style.display='block';
-  tb.textContent='মোট বাজার খরচ: ৳'+bn(total.toFixed(2));
+  tb.textContent='মোট: ৳'+bn(total.toFixed(2));
 }
 
 // ============================================================
@@ -934,44 +898,33 @@ function addDeposit(){
   if(!amt){toast('পরিমাণ দিন');return;}
   S.deposits.push({id:uid(),memberId:mid,date,amt});
   S.deposits.sort((a,b)=>b.date.localeCompare(a.date));
-  persist(); populateMonthFilters(); renderDepositList(); renderMembers();
+  persist();populateYearMonthFilters();renderDepositList();renderMembers();
   document.getElementById('depAmt').value='';
   toast('✅ জমা যোগ হয়েছে');
 }
 
 function delDeposit(id){
-  if(!confirm('এই জমা মুছবেন?')) return;
+  if(!confirm('মুছবেন?'))return;
   S.deposits=S.deposits.filter(d=>d.id!==id);
-  persist(); renderDepositList(); renderMembers(); toast('মুছে ফেলা হয়েছে');
+  persist();renderDepositList();renderMembers();populateYearMonthFilters();toast('মুছে ফেলা হয়েছে');
 }
 
 function renderDepositList(){
   const el=document.getElementById('depositListArea');
+  const yf=document.getElementById('depYearFilter').value;
   const mf=document.getElementById('depMonthFilter').value;
   const memf=document.getElementById('depMemberFilter').value;
   let data=[...S.deposits];
-  if(mf) data=data.filter(d=>d.date&&d.date.startsWith(mf));
-  if(memf) data=data.filter(d=>d.memberId===memf);
-  if(!data.length){
-    el.innerHTML='<div style="text-align:center;padding:20px;color:var(--tx2);font-size:13px">কোনো জমা নেই</div>'; return;
-  }
-  let rows='';
-  data.forEach(d=>{
-    const m=S.members.find(x=>x.id===d.memberId);
-    if(!m) return;
-    const dt=new Date(d.date);
-    const dl=MONTHS[dt.getMonth()+1]+' '+bn(dt.getDate())+', '+bn(dt.getFullYear());
-    rows+=`<tr>
-      <td>${dl}</td>
-      <td>${m.name}</td>
-      <td><strong class="c-ok">৳${bn(d.amt.toFixed(0))}</strong></td>
-      <td><button class="btn btn-danger btn-sm" onclick="delDeposit('${d.id}')">মুছুন</button></td>
-    </tr>`;
-  });
-  el.innerHTML=`<div class="twrap"><table class="mtbl">
-    <thead><tr><th>তারিখ</th><th>নাম</th><th>জমা (৳)</th><th></th></tr></thead>
-    <tbody>${rows}</tbody>
-  </table></div>`;
+  if(yf)data=data.filter(d=>d.date&&d.date.startsWith(yf));
+  if(mf)data=data.filter(d=>d.date&&d.date.slice(5,7)===mf);
+  if(memf)data=data.filter(d=>d.memberId===memf);
+  if(!data.length){el.innerHTML='<div style="text-align:center;padding:18px;color:var(--tx2);font-size:12px">কোনো জমা নেই</div>';return;}
+  el.innerHTML=`<div class="twrap"><table class="mtbl"><thead><tr><th>তারিখ</th><th>নাম</th><th>জমা (৳)</th><th class="noprint"></th></tr></thead><tbody>`+
+    data.map(d=>{
+      const m=S.members.find(x=>x.id===d.memberId);if(!m)return '';
+      const dt=new Date(d.date);
+      return `<tr><td>${MONTHS[dt.getMonth()+1]} ${bn(dt.getDate())}, ${bn(dt.getFullYear())}</td><td>${m.name}</td><td><strong class="c-ok">৳${bn(d.amt.toFixed(0))}</strong></td><td class="noprint"><button class="btn btn-danger btn-sm" onclick="delDeposit('${d.id}')">মুছুন</button></td></tr>`;
+    }).join('')+'</tbody></table></div>';
 }
 
 // ============================================================
@@ -979,72 +932,33 @@ function renderDepositList(){
 // ============================================================
 function renderOverview(){
   const el=document.getElementById('ovContent');
-  if(!S.members.length){ el.innerHTML='<div class="empty"><h3>সদস্য নেই</h3></div>'; return; }
-  const rate=mealRate();
-  const tCost=totalBazar();
-  const tMeals=totalMealsAll();
-  if(!tCost&&!tMeals){
-    el.innerHTML='<div class="empty"><h3>ডেটা নেই</h3><p>দৈনিক মিল ও বাজার খরচ এন্ট্রি করুন</p></div>'; return;
-  }
-  const ml=MONTHS[parseInt(S.month)||0]||'', yr=bn(S.year||'');
-  let tBill=0,tPaid=0,tGet=0,tGive=0, rows='';
-  S.members.forEach((m,i)=>{
-    const meals=memberMeals(m.id);
-    const dep=memberDeposits(m.id);
-    const bill=meals*rate;
-    const diff=dep-bill;
-    tBill+=bill; tPaid+=dep;
-    if(diff>=0) tGet+=diff; else tGive+=Math.abs(diff);
-    rows+=`<tr>
-      <td>${i+1}. ${m.name}</td>
-      <td>${bn(meals.toFixed(1))}</td>
-      <td>৳${bn(bill.toFixed(2))}</td>
-      <td>৳${bn(dep.toFixed(0))}</td>
-      <td>${diff>0?'<span class="bdg bdg-ok">৳'+bn(diff.toFixed(2))+'</span>':'—'}</td>
-      <td>${diff<0?'<span class="bdg bdg-no">৳'+bn(Math.abs(diff).toFixed(2))+'</span>':'—'}</td>
-    </tr>`;
-  });
-  rows+=`<tr class="tot">
-    <td>মোট (${bn(S.members.length)} জন)</td>
-    <td>${bn(tMeals.toFixed(1))}</td>
-    <td>৳${bn(tBill.toFixed(2))}</td>
-    <td>৳${bn(tPaid.toFixed(0))}</td>
-    <td>৳${bn(tGet.toFixed(2))}</td>
-    <td>৳${bn(tGive.toFixed(2))}</td>
-  </tr>`;
-
+  if(!S.members.length){el.innerHTML='<div class="empty"><h3>সদস্য নেই</h3></div>';return;}
+  const rate=mealRate(),tCost=totalBazar(),tMeals=totalMealsAll();
+  if(!tCost&&!tMeals){el.innerHTML='<div class="empty"><h3>ডেটা নেই</h3><p>দৈনিক মিল ও বাজার খরচ এন্ট্রি করুন</p></div>';return;}
+  const ml=MONTHS[parseInt(S.month)||0]||'',yr=bn(S.year||'');
+  let tBill=0,tPaid=0,tGet=0,tGive=0;
+  const rows=S.members.map((m,i)=>{
+    const meals=memberMeals(m.id),dep=memberDeposits(m.id),bill=meals*rate,diff=dep-bill;
+    tBill+=bill;tPaid+=dep;
+    if(diff>=0)tGet+=diff;else tGive+=Math.abs(diff);
+    return `<tr><td>${i+1}. ${m.name}</td><td>${bn(meals.toFixed(1))}</td><td>৳${bn(bill.toFixed(2))}</td><td>৳${bn(dep.toFixed(0))}</td><td>${diff>0?'<span class="bdg bdg-ok">৳'+bn(diff.toFixed(2))+'</span>':'—'}</td><td>${diff<0?'<span class="bdg bdg-no">৳'+bn(Math.abs(diff).toFixed(2))+'</span>':'—'}</td></tr>`;
+  }).join('');
   el.innerHTML=`
-    <div class="banner">
-      <h1>${S.org||'প্রতিষ্ঠান'}</h1>
-      <h2>${S.addr||''}</h2>
-      <p>${ml} ${yr} মাসের মিলের হিসাব</p>
-      <p style="margin-top:2px">তৈরির তারিখ: ${todayStr()}</p>
-    </div>
+    <div class="banner"><h1>${S.org||'প্রতিষ্ঠান'}</h1>${S.addr?'<h2>'+S.addr+'</h2>':''}<p>${ml} ${yr} মাসের মিলের হিসাব</p><p>তৈরির তারিখ: ${todayStr()}</p></div>
     <div class="sgrid">
       <div class="scard"><div class="slbl">মোট বাজার খরচ</div><div class="sval">৳${bn(tCost.toFixed(2))}</div></div>
       <div class="scard"><div class="slbl">মিল প্রতি রেট</div><div class="sval">৳${bn(rate.toFixed(2))}</div></div>
       <div class="scard"><div class="slbl">মোট মিল সংখ্যা</div><div class="sval">${bn(tMeals.toFixed(1))}</div></div>
-      <div class="scard ok"><div class="slbl">মিল মোট পাবে</div><div class="sval">৳${bn(tGet.toFixed(2))}</div></div>
-      <div class="scard no"><div class="slbl">মিল মোট দিবে</div><div class="sval">৳${bn(tGive.toFixed(2))}</div></div>
+      <div class="scard ok"><div class="slbl">মোট পাবে</div><div class="sval">৳${bn(tGet.toFixed(2))}</div></div>
+      <div class="scard no"><div class="slbl">মোট দিবে</div><div class="sval">৳${bn(tGive.toFixed(2))}</div></div>
       <div class="scard or"><div class="slbl">ব্যালেন্স</div><div class="sval">৳${bn(Math.abs(tGet-tGive).toFixed(2))}</div></div>
     </div>
     <div class="card">
-      <div class="ctitle">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        সকল সদস্যের হিসাব
-      </div>
-      <div class="twrap">
-        <table class="mtbl">
-          <thead><tr><th>নাম</th><th>মিল</th><th>বিল (৳)</th><th>জমা (৳)</th><th>পাবেন (৳)</th><th>দিবেন (৳)</th></tr></thead>
-          <tbody>${rows}</tbody>
-        </table>
-      </div>
+      <div class="ctitle"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>সকল সদস্যের হিসাব</div>
+      <div class="twrap"><table class="mtbl"><thead><tr><th>নাম</th><th>মিল</th><th>বিল (৳)</th><th>জমা (৳)</th><th>পাবেন</th><th>দিবেন</th></tr></thead><tbody>${rows}<tr class="tot"><td>মোট (${bn(S.members.length)} জন)</td><td>${bn(tMeals.toFixed(1))}</td><td>৳${bn(tBill.toFixed(2))}</td><td>৳${bn(tPaid.toFixed(0))}</td><td>৳${bn(tGet.toFixed(2))}</td><td>৳${bn(tGive.toFixed(2))}</td></tr></tbody></table></div>
     </div>
     <div class="bgrp noprint" style="margin-top:4px">
-      <button class="btn btn-ok" onclick="doPrint('overview')">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-        প্রিন্ট / PDF
-      </button>
+      <button class="btn btn-ok" onclick="doPrint('overview')"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>প্রিন্ট/PDF</button>
       <button class="btn btn-s" onclick="doPrint('all')">পূর্ণ রিপোর্ট</button>
     </div>`;
 }
@@ -1054,48 +968,14 @@ function renderOverview(){
 // ============================================================
 function renderIndividual(){
   const el=document.getElementById('indContent');
-  if(!S.members.length){ el.innerHTML='<div class="empty"><h3>সদস্য নেই</h3></div>'; return; }
-  const rate=mealRate();
-  const ml=MONTHS[parseInt(S.month)||0]||'', yr=bn(S.year||'');
-  let cards='';
-  S.members.forEach(m=>{
-    const meals=memberMeals(m.id);
-    const dep=memberDeposits(m.id);
-    const bill=meals*rate;
-    const diff=dep-bill;
-    const rowCls=diff>0?'get':diff<0?'give':'even';
-    const rowLbl=diff>0?'পাবেন':diff<0?'দিবেন':'সমান';
-    cards+=`<div class="icard">
-      <div class="icard-h">
-        <div class="iavtr">${initials(m.name)}</div>
-        <div style="min-width:0;flex:1">
-          <div style="font-size:12px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${m.name}</div>
-          <div style="font-size:10px;opacity:.75">${ml} ${yr}</div>
-        </div>
-      </div>
-      <div class="icard-b">
-        <div class="irow"><span class="il">মিল সংখ্যা</span><span class="iv">${bn(meals.toFixed(1))} টি</span></div>
-        <div class="irow"><span class="il">মিল রেট</span><span class="iv">৳${bn(rate.toFixed(2))}</span></div>
-        <div class="irow"><span class="il">মোট বিল</span><span class="iv">৳${bn(bill.toFixed(2))}</span></div>
-        <div class="irow"><span class="il">মোট জমা</span><span class="iv">৳${bn(dep.toFixed(0))}</span></div>
-        <div class="irow ${rowCls}"><span class="il">${rowLbl}</span><span class="iv">৳${bn(Math.abs(diff).toFixed(2))}</span></div>
-      </div>
-    </div>`;
-  });
-  el.innerHTML=`
-    <div class="banner">
-      <h1>${S.org||'প্রতিষ্ঠান'}</h1>
-      <h2>${S.addr||''}</h2>
-      <p>${ml} ${yr} — ব্যক্তিগত হিসাব</p>
-    </div>
-    <div class="igrid">${cards}</div>
-    <div class="bgrp noprint" style="margin-top:14px">
-      <button class="btn btn-ok" onclick="doPrint('individual')">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-        প্রিন্ট / PDF (ব্যক্তিগত)
-      </button>
-      <button class="btn btn-s" onclick="doPrint('all')">পূর্ণ রিপোর্ট</button>
-    </div>`;
+  if(!S.members.length){el.innerHTML='<div class="empty"><h3>সদস্য নেই</h3></div>';return;}
+  const rate=mealRate(),ml=MONTHS[parseInt(S.month)||0]||'',yr=bn(S.year||'');
+  const cards=S.members.map(m=>{
+    const meals=memberMeals(m.id),dep=memberDeposits(m.id),bill=meals*rate,diff=dep-bill;
+    const rc=diff>0?'get':diff<0?'give':'even',rl=diff>0?'পাবেন':diff<0?'দিবেন':'সমান';
+    return `<div class="icard"><div class="icard-h"><div class="iavtr">${initials(m.name)}</div><div style="min-width:0;flex:1"><div style="font-size:11px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${m.name}</div><div style="font-size:9px;opacity:.7">${ml} ${yr}</div></div></div><div class="icard-b"><div class="irow"><span class="il">মিল সংখ্যা</span><span class="iv">${bn(meals.toFixed(1))} টি</span></div><div class="irow"><span class="il">মিল রেট</span><span class="iv">৳${bn(rate.toFixed(2))}</span></div><div class="irow"><span class="il">মোট বিল</span><span class="iv">৳${bn(bill.toFixed(2))}</span></div><div class="irow"><span class="il">মোট জমা</span><span class="iv">৳${bn(dep.toFixed(0))}</span></div><div class="irow ${rc}"><span class="il">${rl}</span><span class="iv">৳${bn(Math.abs(diff).toFixed(2))}</span></div></div></div>`;
+  }).join('');
+  el.innerHTML=`<div class="banner"><h1>${S.org||'প্রতিষ্ঠান'}</h1>${S.addr?'<h2>'+S.addr+'</h2>':''}<p>${ml} ${yr} — ব্যক্তিগত হিসাব</p></div><div class="igrid">${cards}</div><div class="bgrp noprint" style="margin-top:12px"><button class="btn btn-ok" onclick="doPrint('individual')"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>প্রিন্ট/PDF (ব্যক্তিগত)</button><button class="btn btn-s" onclick="doPrint('all')">পূর্ণ রিপোর্ট</button></div>`;
 }
 
 // ============================================================
@@ -1103,15 +983,12 @@ function renderIndividual(){
 // ============================================================
 function doPrint(mode){
   if(!S.members.length){toast('সদস্য নেই');return;}
-  renderOverview(); renderIndividual();
+  renderOverview();renderIndividual();
   document.body.classList.remove('po-overview','po-individual');
-  if(mode==='overview')   document.body.classList.add('po-overview');
-  if(mode==='individual') document.body.classList.add('po-individual');
+  if(mode==='overview')document.body.classList.add('po-overview');
+  if(mode==='individual')document.body.classList.add('po-individual');
   toast('📄 Save as PDF বেছে নিন...');
-  setTimeout(()=>{
-    window.print();
-    setTimeout(()=>document.body.classList.remove('po-overview','po-individual'),800);
-  },300);
+  setTimeout(()=>{window.print();setTimeout(()=>document.body.classList.remove('po-overview','po-individual'),800);},300);
 }
 
 // ============================================================
@@ -1122,39 +999,35 @@ function goTab(id){
   document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
   document.getElementById('sec-'+id).classList.add('on');
   document.getElementById('tab-'+id).classList.add('on');
-  if(id==='overview')   renderOverview();
-  if(id==='individual') renderIndividual();
-  if(id==='daily')      { renderDailyEntry(); renderDailyLog(); }
-  if(id==='bazar')      renderBazarList();
-  if(id==='deposit')    renderDepositList();
+  if(id==='overview')renderOverview();
+  if(id==='individual')renderIndividual();
+  if(id==='daily'){renderDailyEntry();renderDailyLog();}
+  if(id==='bazar')renderBazarList();
+  if(id==='deposit')renderDepositList();
 }
 
 // ============================================================
 // RESET & ARCHIVE
 // ============================================================
 function resetAll(){
-  const msg=S.members.length
-    ?'নতুন মাস শুরু করবেন?\n\n✅ বর্তমান ডেটা আর্কাইভে সেভ হবে।'
-    :'নতুন মাস শুরু করবেন?';
-  if(!confirm(msg)) return;
-  if(S.members.length){ const arc=getArc(); arc.unshift({...S,savedAt:Date.now()}); saveArc(arc); }
+  const msg=S.members.length?'নতুন মাস শুরু করবেন?\n\n✅ বর্তমান ডেটা আর্কাইভে সেভ হবে।\nসদস্য তালিকা বহাল থাকবে।':'নতুন মাস শুরু করবেন?';
+  if(!confirm(msg))return;
+  if(S.members.length||S.bazar.length){const arc=getArc();arc.unshift({...S,savedAt:Date.now()});saveArc(arc);}
   S={org:S.org,addr:S.addr,month:'',year:new Date().getFullYear(),members:S.members,dailyMeals:[],bazar:[],deposits:[],ts:Date.now()};
-  persist(); applyForm(); renderMemberSelects(); renderMembers();
-  renderDailyLog(); renderBazarList(); renderDepositList(); updateAutoCalc(); renderArc();
-  goTab('setup'); toast('✅ নতুন মাস শুরু হয়েছে — সদস্য তালিকা বহাল আছে');
+  persist();applyForm();renderMemberSelects();renderMembers();
+  renderDailyLog();renderBazarList();renderDepositList();updateAutoCalc();renderArc();
+  goTab('setup');toast('✅ নতুন মাস শুরু — সদস্য বহাল আছে');
 }
 
 function renderArc(){
-  const arc=getArc(), el=document.getElementById('arcSection');
+  const arc=getArc(),el=document.getElementById('arcSection');
   if(!arc.length){el.style.display='none';return;}
   el.style.display='block';
   document.getElementById('arcList').innerHTML=arc.map((s,i)=>`
     <div class="ait">
-      <div>
-        <div class="aname">${s.org||'(নাম নেই)'} — ${MONTHS[parseInt(s.month)||0]||''} ${s.year||''}</div>
-        <div class="ameta">${s.members?s.members.length:0} জন &nbsp;|&nbsp; বাজার: ৳${s.bazar?s.bazar.reduce((t,b)=>t+b.amt,0).toFixed(0):'০'} &nbsp;|&nbsp; সেভ: ${s.savedAt?new Date(s.savedAt).toLocaleDateString('bn-BD'):''}</div>
-      </div>
-      <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <div><div class="aname">${s.org||'(নাম নেই)'} — ${MONTHS[parseInt(s.month)||0]||''} ${s.year||''}</div>
+      <div class="ameta">${(s.members||[]).length} জন &nbsp;|&nbsp; বাজার: ৳${(s.bazar||[]).reduce((t,b)=>t+b.amt,0).toFixed(0)} &nbsp;|&nbsp; ${s.savedAt?new Date(s.savedAt).toLocaleDateString('bn-BD'):''}</div></div>
+      <div style="display:flex;gap:5px;flex-wrap:wrap">
         <button class="btn btn-s btn-sm" onclick="restoreArc(${i})">পুনরুদ্ধার</button>
         <button class="btn btn-danger btn-sm" onclick="delArc(${i})">মুছুন</button>
       </div>
@@ -1162,78 +1035,206 @@ function renderArc(){
 }
 
 function restoreArc(i){
-  if(!confirm('এই পুরনো হিসাব পুনরুদ্ধার করবেন?')) return;
+  if(!confirm('পুনরুদ্ধার করবেন?'))return;
   const arc=getArc();
-  if(S.members.length){ arc.unshift({...S,savedAt:Date.now()}); }
-  const idx=i+(S.members.length?1:0);
-  const r=arc.splice(idx,1)[0];
-  if(!r) return;
-  delete r.savedAt; S=r;
-  if(!S.dailyMeals) S.dailyMeals=[];
-  if(!S.bazar) S.bazar=[];
-  if(!S.deposits) S.deposits=[];
-  saveArc(arc); persist(); applyForm(); renderMemberSelects(); renderMembers();
-  renderDailyLog(); renderBazarList(); renderDepositList(); updateAutoCalc(); renderArc();
-  goTab('overview'); toast('✅ পুনরুদ্ধার হয়েছে');
+  if(S.members.length||S.bazar.length)arc.unshift({...S,savedAt:Date.now()});
+  const idx=i+((S.members.length||S.bazar.length)?1:0);
+  const r=arc.splice(idx,1)[0];if(!r)return;
+  delete r.savedAt;S=r;
+  if(!S.dailyMeals)S.dailyMeals=[];
+  if(!S.bazar)S.bazar=[];
+  if(!S.deposits)S.deposits=[];
+  saveArc(arc);persist();applyForm();renderMemberSelects();renderMembers();
+  renderDailyLog();renderBazarList();renderDepositList();updateAutoCalc();renderArc();
+  goTab('overview');toast('✅ পুনরুদ্ধার হয়েছে');
 }
 
 function delArc(i){
-  if(!confirm('মুছবেন?')) return;
-  const arc=getArc(); arc.splice(i,1); saveArc(arc); renderArc(); toast('মুছে ফেলা হয়েছে');
+  if(!confirm('মুছবেন?'))return;
+  const arc=getArc();arc.splice(i,1);saveArc(arc);renderArc();toast('মুছে ফেলা হয়েছে');
 }
 
 // ============================================================
-// DEMO DATA
+// CSV EXPORT
+// ============================================================
+function exportCSV(){
+  const esc=v=>'"'+String(v||'').replace(/"/g,'""')+'"';
+  let csv='## MEALCALC EXPORT v1\n';
+  csv+=`## Org:${esc(S.org)},Addr:${esc(S.addr)},Month:${S.month},Year:${S.year}\n\n`;
+
+  csv+='## MEMBERS\nid,name\n';
+  S.members.forEach(m=>csv+=esc(m.id)+','+esc(m.name)+'\n');
+
+  csv+='\n## DAILY_MEALS\nid,memberId,date,morning,noon,night,total\n';
+  S.dailyMeals.forEach(e=>csv+=esc(e.id)+','+esc(e.memberId)+','+e.date+','+(e.morning?1:0)+','+(e.noon?1:0)+','+(e.night?1:0)+','+e.total+'\n');
+
+  csv+='\n## BAZAR\nid,date,amt,desc\n';
+  S.bazar.forEach(b=>csv+=esc(b.id)+','+b.date+','+b.amt+','+esc(b.desc)+'\n');
+
+  csv+='\n## DEPOSITS\nid,memberId,date,amt\n';
+  S.deposits.forEach(d=>csv+=esc(d.id)+','+esc(d.memberId)+','+d.date+','+d.amt+'\n');
+
+  const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=(S.org||'MealCalc')+'_'+(MONTHS[parseInt(S.month)||0]||'')+'_'+(S.year||'')+'.csv';
+  a.click();
+  toast('✅ CSV ডাউনলোড হচ্ছে...');
+}
+
+// ============================================================
+// CSV IMPORT
+// ============================================================
+function importCSV(event){
+  const file=event.target.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    try{
+      const text=e.target.result.replace(/^\ufeff/,'');
+      const lines=text.split('\n').map(l=>l.trim()).filter(l=>l);
+      let section='',newS={org:'',addr:'',month:'',year:'',members:[],dailyMeals:[],bazar:[],deposits:[]};
+
+      // Parse header meta
+      const metaLine=lines.find(l=>l.startsWith('## Org:'));
+      if(metaLine){
+        const om=metaLine.match(/Org:"([^"]*)",Addr:"([^"]*)",Month:([^,]*),Year:(.*)/);
+        if(om){newS.org=om[1];newS.addr=om[2];newS.month=om[3];newS.year=om[4];}
+      }
+
+      const parseRow=line=>{
+        const res=[];let cur='',inQ=false;
+        for(let c of line){
+          if(c==='"')inQ=!inQ;
+          else if(c===','&&!inQ){res.push(cur);cur='';}
+          else cur+=c;
+        }
+        res.push(cur);return res.map(v=>v.replace(/""/g,'"'));
+      };
+
+      for(const line of lines){
+        if(line.startsWith('## MEMBERS'))section='members';
+        else if(line.startsWith('## DAILY_MEALS'))section='daily';
+        else if(line.startsWith('## BAZAR'))section='bazar';
+        else if(line.startsWith('## DEPOSITS'))section='deposits';
+        else if(line.startsWith('##')||line.startsWith('id,'))continue;
+        else if(section==='members'){const r=parseRow(line);if(r.length>=2)newS.members.push({id:r[0],name:r[1]});}
+        else if(section==='daily'){const r=parseRow(line);if(r.length>=7)newS.dailyMeals.push({id:r[0],memberId:r[1],date:r[2],morning:r[3]==='1',noon:r[4]==='1',night:r[5]==='1',total:parseFloat(r[6])||0});}
+        else if(section==='bazar'){const r=parseRow(line);if(r.length>=4)newS.bazar.push({id:r[0],date:r[1],amt:parseFloat(r[2])||0,desc:r[3]});}
+        else if(section==='deposits'){const r=parseRow(line);if(r.length>=4)newS.deposits.push({id:r[0],memberId:r[1],date:r[2],amt:parseFloat(r[3])||0});}
+      }
+
+      // Archive current
+      if(S.members.length||S.bazar.length){const arc=getArc();arc.unshift({...S,savedAt:Date.now()});saveArc(arc);}
+      S=newS;persist();
+      applyForm();renderMemberSelects();renderMembers();
+      renderDailyLog();renderBazarList();renderDepositList();updateAutoCalc();renderArc();
+      goTab('overview');toast('✅ CSV Import সম্পন্ন হয়েছে');
+    }catch(err){toast('❌ Import ব্যর্থ: '+err.message);}
+  };
+  reader.readAsText(file,'utf-8');
+  event.target.value='';
+}
+
+// ============================================================
+// DEMO DATA (সকল ২০ জন সদস্য)
 // ============================================================
 function loadDemo(){
-  if(S.members.length&&!confirm('উদাহরণ ডেটা লোড করবেন?')) return;
-  S.org='Bakhrabad Gas Field, BGFCL'; S.addr='Muradnagar, Cumilla';
-  S.month='5'; S.year='2026';
+  if((S.members.length||S.bazar.length)&&!confirm('উদাহরণ ডেটা লোড করবেন?'))return;
+  if(S.members.length||S.bazar.length){const arc=getArc();arc.unshift({...S,savedAt:Date.now()});saveArc(arc);}
+  S.org='Bakhrabad Gas Field, BGFCL';S.addr='Muradnagar, Cumilla';
+  S.month='5';S.year='2026';
   S.members=[
-    {id:'m1',name:'জনাব আবদুর রফিক প্রামানিক স্যার'},
-    {id:'m2',name:'জনাব পিকলু বিশ্বাস'},
-    {id:'m3',name:'জনাব মোশাররফ হোসেন মুন্সী'},
-    {id:'m4',name:'জনাব কাজী মাইনুল হোসেন'},
+    {id:'m01',name:'জনাব আবদুর রফিক প্রামানিক স্যার'},
+    {id:'m02',name:'জনাব পিকলু বিশ্বাস'},
+    {id:'m03',name:'জনাব মোশাররফ হোসেন মুন্সী'},
+    {id:'m04',name:'জনাব কাজী মাইনুল হোসেন'},
+    {id:'m05',name:'জনাব জাহেদুল হক মজুমদার'},
+    {id:'m06',name:'জনাব তানভীর মুকিত'},
+    {id:'m07',name:'জনাব মেহেদী হাসান জয়'},
+    {id:'m08',name:'জনাব তৌকির আহমেদ'},
+    {id:'m09',name:'জনাব সালমান আলী'},
+    {id:'m10',name:'জনাব সামিউল আলম'},
+    {id:'m11',name:'জনাব মোঃ সোহাগ হোসাইন'},
+    {id:'m12',name:'জনাব আশাদুল হক'},
+    {id:'m13',name:'জনাব সোহেল ইকবাল'},
+    {id:'m14',name:'জনাব রতন মিঞ্চা'},
+    {id:'m15',name:'জনাব ডাঃ তাসকিউজ্জামান'},
+    {id:'m16',name:'জনাব স্বপ্নন কুমার হালদার'},
+    {id:'m17',name:'জনাব মোঃ মনিরুল ইসলাম'},
+    {id:'m18',name:'জনাব তীথজীত বর্মন'},
+    {id:'m19',name:'Bangla CAT'},
+    {id:'m20',name:'জনাব এস এম ফারুক'},
   ];
-  // Sample daily meals
-  S.dailyMeals=[
-    {id:'d1',memberId:'m1',date:'2026-05-01',morning:true,noon:true,night:true,total:2.5},
-    {id:'d2',memberId:'m2',date:'2026-05-01',morning:false,noon:true,night:false,total:1},
-    {id:'d3',memberId:'m3',date:'2026-05-01',morning:true,noon:true,night:true,total:2.5},
-    {id:'d4',memberId:'m4',date:'2026-05-02',morning:true,noon:true,night:true,total:2.5},
-    {id:'d5',memberId:'m1',date:'2026-05-02',morning:false,noon:true,night:true,total:2},
-    {id:'d6',memberId:'m3',date:'2026-05-03',morning:true,noon:false,night:true,total:1.5},
+  // Sample bazar (31 days, ~51482 total)
+  const bazarData=[
+    ['2026-05-01',1650,'মাছ ও সবজি'],['2026-05-02',1420,'মুরগি ও মসলা'],
+    ['2026-05-03',1800,'গরুর মাংস'],['2026-05-04',1200,'সবজি ও ডাল'],
+    ['2026-05-05',1550,'মাছ ও তেল'],['2026-05-06',1350,'মুরগি'],
+    ['2026-05-07',1700,'গরুর মাংস ও সবজি'],['2026-05-08',1400,'মাছ'],
+    ['2026-05-09',1600,'মুরগি ও মসলা'],['2026-05-10',1750,'গরু ও সবজি'],
+    ['2026-05-11',1300,'সবজি ও ডিম'],['2026-05-12',1500,'মাছ ও তেল'],
+    ['2026-05-13',1650,'মুরগি ও মসলা'],['2026-05-14',1800,'গরুর মাংস'],
+    ['2026-05-15',1400,'সবজি ও ডাল'],['2026-05-16',1550,'মাছ'],
+    ['2026-05-17',1700,'মুরগি ও মসলা'],['2026-05-18',1350,'সবজি'],
+    ['2026-05-19',1600,'মাছ ও তেল'],['2026-05-20',1750,'গরু ও সবজি'],
+    ['2026-05-21',1450,'মুরগি'],['2026-05-22',1600,'মাছ ও মসলা'],
+    ['2026-05-23',1700,'গরুর মাংস'],['2026-05-24',1350,'সবজি ও ডিম'],
+    ['2026-05-25',1550,'মাছ ও তেল'],['2026-05-26',1650,'মুরগি'],
+    ['2026-05-27',1800,'গরু ও সবজি'],['2026-05-28',1400,'মাছ'],
+    ['2026-05-29',1600,'মুরগি ও মসলা'],['2026-05-30',1500,'সবজি ও ডাল'],
+    ['2026-05-31',1650,'মাছ ও তেল'],
   ];
-  // Sample bazar
-  S.bazar=[
-    {id:'b1',date:'2026-05-01',amt:1250,desc:'মাছ ও সবজি'},
-    {id:'b2',date:'2026-05-02',amt:980,desc:'মুরগি ও মসলা'},
-    {id:'b3',date:'2026-05-03',amt:1100,desc:'গরুর মাংস'},
+  S.bazar=bazarData.map(([date,amt,desc])=>({id:uid(),date,amt,desc}));
+
+  // Generate meal entries for each member (realistic totals)
+  const mealPlan={
+    m01:31.5,m02:5,m03:25,m04:43.5,m05:47.5,m06:32.5,
+    m07:13,m08:66,m09:63,m10:40.5,m11:40,m12:11,
+    m13:45.5,m14:23.5,m15:27,m16:26,m17:51,m18:13,
+    m19:4,m20:45
+  };
+  S.dailyMeals=[];
+  Object.entries(mealPlan).forEach(([mid,target])=>{
+    let remaining=target;
+    for(let day=1;day<=31&&remaining>0;day++){
+      const date=`2026-05-${String(day).padStart(2,'0')}`;
+      const max=Math.min(2.5,remaining);
+      let mor=false,noo=false,nig=false;
+      if(max>=2.5){mor=true;noo=true;nig=true;}
+      else if(max>=2){noo=true;nig=true;}
+      else if(max>=1.5){mor=true;noo=true;}
+      else if(max>=1){noo=true;}
+      else if(max>=0.5){mor=true;}
+      const tot=(mor?0.5:0)+(noo?1:0)+(nig?1:0);
+      if(tot>0){S.dailyMeals.push({id:uid(),memberId:mid,date,morning:mor,noon:noo,night:nig,total:tot});remaining-=tot;}
+    }
+  });
+
+  // Deposits
+  const depData=[
+    ['m01',3000],['m02',0],['m03',3000],['m04',3000],['m05',3000],
+    ['m06',3500],['m07',1150],['m08',0],['m09',140],['m10',0],
+    ['m11',2400],['m12',0],['m13',2000],['m14',2000],['m15',2000],
+    ['m16',2500],['m17',3500],['m18',0],['m19',0],['m20',0],
   ];
-  // Sample deposits
-  S.deposits=[
-    {id:'dp1',memberId:'m1',date:'2026-05-05',amt:2000},
-    {id:'dp2',memberId:'m2',date:'2026-05-05',amt:1500},
-    {id:'dp3',memberId:'m3',date:'2026-05-10',amt:2500},
-    {id:'dp4',memberId:'m4',date:'2026-05-10',amt:2000},
-  ];
-  persist(); applyForm(); renderMemberSelects(); renderMembers();
-  renderDailyLog(); renderBazarList(); renderDepositList(); updateAutoCalc();
-  toast('✅ উদাহরণ ডেটা লোড হয়েছে'); goTab('overview');
+  S.deposits=depData.filter(([,amt])=>amt>0).map(([mid,amt])=>({id:uid(),memberId:mid,date:'2026-05-15',amt}));
+
+  persist();applyForm();renderMemberSelects();renderMembers();
+  renderDailyLog();renderBazarList();renderDepositList();updateAutoCalc();
+  toast('✅ BGFCL মে ২০২৬ উদাহরণ লোড হয়েছে (২০ জন)');
+  goTab('overview');
 }
 
 // ============================================================
-// TOAST
+// TOAST & SW
 // ============================================================
 function toast(msg){
   const t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('on');
+  t.textContent=msg;t.classList.add('on');
   setTimeout(()=>t.classList.remove('on'),3000);
 }
-
-// SERVICE WORKER
-if('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js').catch(()=>{});
-
+if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
 init();
 </script>
 </body>
