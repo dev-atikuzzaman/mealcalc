@@ -182,7 +182,9 @@ body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh
 .member-meal-row{display:flex;align-items:center;gap:8px;padding:8px 11px;background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);margin-bottom:6px;flex-wrap:wrap}
 .member-meal-row .mmr-name{font-weight:600;font-size:12px;min-width:120px;flex:1}
 .meal-checks{display:flex;gap:6px;flex-wrap:wrap}
-.meal-chk{display:flex;align-items:center;gap:4px;cursor:pointer;padding:4px 8px;border-radius:var(--r);border:1.5px solid var(--bd);transition:.2s;font-size:11px;font-weight:600;user-select:none;color:var(--tx2)}
+.meal-chk{display:inline-flex;align-items:center;gap:4px;cursor:pointer;padding:6px 10px;border-radius:var(--r);border:2px solid var(--bd);transition:.2s;font-size:12px;font-weight:600;user-select:none;color:var(--tx2);background:var(--bg);font-family:var(--f);-webkit-tap-highlight-color:transparent}
+.meal-chk:active{transform:scale(.95)}
+.meal-val{font-size:14px;font-weight:700;margin-left:2px}
 .meal-chk.morning{border-color:#f39c12;color:#784212}
 .meal-chk.morning.checked{background:#fef9e7;border-color:#e67e22}
 .meal-chk.noon{border-color:#27ae60;color:#0b5345}
@@ -193,6 +195,7 @@ body{font-family:var(--f);background:var(--bg3);color:var(--tx);min-height:100vh
 body.dark .meal-chk.morning{color:#f39c12}
 body.dark .meal-chk.noon{color:#2ecc71}
 body.dark .meal-chk.night{color:#4db8ff}
+.meal-chk input{display:none}
 .mmr-total{font-size:12px;font-weight:700;color:var(--pr);min-width:55px;text-align:right}
 
 /* FILTER BAR */
@@ -309,11 +312,11 @@ body.dark .banner{background:linear-gradient(135deg,#0a0a20,#1a1a3e)}
     <div class="fg2">
       <div class="fld">
         <label>প্রতিষ্ঠানের নাম *</label>
-        <input type="text" id="orgName" placeholder="যেমনঃ Bakhrabad Gas Field, BGFCL" oninput="saveSetup()"/>
+        <input type="text" id="orgName" placeholder="যেমনঃ Bakhrabad Gas Field, BGFCL" oninput="saveSetup()" style="color:transparent;text-shadow:0 0 0 var(--tx);caret-color:var(--tx)"/>
       </div>
       <div class="fld">
         <label>ঠিকানা</label>
-        <input type="text" id="orgAddr" placeholder="যেমনঃ Muradnagar, Cumilla" oninput="saveSetup()"/>
+        <input type="text" id="orgAddr" placeholder="যেমনঃ Muradnagar, Cumilla" oninput="saveSetup()" style="color:transparent;text-shadow:0 0 0 var(--tx2);caret-color:var(--tx2)"/>
       </div>
     </div>
   </div>
@@ -751,21 +754,17 @@ function renderMemberSelects(){
 }
 
 function populateYearMonthFilters(){
-  const years=new Set(),months=new Set();
-  [...S.bazar,...S.deposits,...S.dailyMeals].forEach(e=>{
-    if(e.date){years.add(e.date.slice(0,4));months.add(e.date.slice(5,7));}
-  });
-  const sortedYears=[...years].sort().reverse();
-  const sortedMonths=[...months].sort();
-
+  // Fixed: সব ১২ মাস + ২০২৬-২১০০ বছর সবসময় দেখাবে
   [['bazarYearFilter','bazarMonthFilter'],['depYearFilter','depMonthFilter'],['logYearFilter','logMonthFilter']].forEach(([yid,mid])=>{
     const yel=document.getElementById(yid),mel=document.getElementById(mid);
     if(!yel||!mel)return;
     const cy=yel.value,cm=mel.value;
+    // Year: 2026-2100
     yel.innerHTML='<option value="">-- বছর --</option>';
+    for(let y=2026;y<=2100;y++){const o=document.createElement('option');o.value=y;o.textContent=y;yel.appendChild(o);}
+    // Month: all 12
     mel.innerHTML='<option value="">-- মাস --</option>';
-    sortedYears.forEach(y=>{const o=document.createElement('option');o.value=y;o.textContent=y;yel.appendChild(o);});
-    sortedMonths.forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=MONTHS[parseInt(m)];mel.appendChild(o);});
+    for(let m=1;m<=12;m++){const o=document.createElement('option');o.value=String(m).padStart(2,'0');o.textContent=MONTHS[m];mel.appendChild(o);}
     if(cy)yel.value=cy;
     if(cm)mel.value=cm;
   });
@@ -789,33 +788,33 @@ function renderDailyEntry(){
     return `<div class="member-meal-row">
       <div class="mmr-name">${m.name}</div>
       <div class="meal-checks">
-        <label class="meal-chk morning ${mor?'checked':''}" onclick="toggleMeal('${m.id}','${date}','morning',this)">
-          <input type="checkbox" ${mor?'checked':''}/>☀️ সকাল
-        </label>
-        <label class="meal-chk noon ${noo?'checked':''}" onclick="toggleMeal('${m.id}','${date}','noon',this)">
-          <input type="checkbox" ${noo?'checked':''}/>🌤️ দুপুর
-        </label>
-        <label class="meal-chk night ${nig?'checked':''}" onclick="toggleMeal('${m.id}','${date}','night',this)">
-          <input type="checkbox" ${nig?'checked':''}/>🌙 রাত
-        </label>
+        <button type="button" class="meal-chk morning ${mor?'checked':''}" onclick="toggleMeal('${m.id}','${date}','morning')">
+          ☀️ সকাল<span class="meal-val">${mor?'✓':''}</span>
+        </button>
+        <button type="button" class="meal-chk noon ${noo?'checked':''}" onclick="toggleMeal('${m.id}','${date}','noon')">
+          🌤️ দুপুর<span class="meal-val">${noo?'✓':''}</span>
+        </button>
+        <button type="button" class="meal-chk night ${nig?'checked':''}" onclick="toggleMeal('${m.id}','${date}','night')">
+          🌙 রাত<span class="meal-val">${nig?'✓':''}</span>
+        </button>
       </div>
-      <div class="mmr-total" id="mtot-${m.id}">${bn(tot.toFixed(1))}</div>
+      <div class="mmr-total">${bn(tot.toFixed(1))} মিল</div>
     </div>`;
   }).join('');
   area.innerHTML=`<div class="meal-date-bar noprint"><span class="dlbl">📅 ${dateLabel}</span><span style="font-size:10px;opacity:.8">সকাল=০.৫ | দুপুর=১ | রাত=১ | সর্বোচ্চ=২.৫</span></div>${rows}`;
 }
 
-function toggleMeal(memberId,date,slot,labelEl){
-  labelEl.classList.toggle('checked');
-  const checked=labelEl.classList.contains('checked');
+function toggleMeal(memberId,date,slot){
+  // Pure JS toggle — no DOM event dependency, works reliably on mobile
   let entry=S.dailyMeals.find(e=>e.memberId===memberId&&e.date===date);
   if(!entry){entry={id:uid(),memberId,date,morning:false,noon:false,night:false,total:0};S.dailyMeals.push(entry);}
-  entry[slot]=checked;
+  entry[slot]=!entry[slot];
   entry.total=(entry.morning?0.5:0)+(entry.noon?1:0)+(entry.night?1:0);
   if(entry.total===0)S.dailyMeals=S.dailyMeals.filter(e=>!(e.memberId===memberId&&e.date===date));
-  const tot=document.getElementById('mtot-'+memberId);
-  if(tot)tot.textContent=bn(entry.total.toFixed(1));
-  persist();updateAutoCalc();renderDailyLog();renderMembers();populateYearMonthFilters();
+  persist();
+  // Re-render just the entry area to reflect changes
+  renderDailyEntry();
+  updateAutoCalc();renderDailyLog();renderMembers();
 }
 
 function renderDailyLog(){
